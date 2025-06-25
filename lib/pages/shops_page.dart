@@ -7,7 +7,7 @@ class ShopsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('All Shop'),
+        title: Text('All Shops'),
         centerTitle: true,
       ),
     );
