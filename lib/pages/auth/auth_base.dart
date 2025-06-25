@@ -18,7 +18,7 @@ class AuthBase extends StatelessWidget {
           children: [
             Container(
               height:
-                  MediaQuery.of(context).size.height * 0.56,
+                  MediaQuery.of(context).size.height * 0.50,
               color: Colors.white,
               child: Stack(
                 children: [
@@ -29,7 +29,7 @@ class AuthBase extends StatelessWidget {
                     child: Image.asset(
                       splashImage,
                       height: 420,
-                      fit: BoxFit.contain,
+                      fit: BoxFit.cover,
                     ),
                   ),
                   Container(

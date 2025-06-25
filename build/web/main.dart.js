@@ -79691,7 +79691,7 @@ A.Ji.prototype={
 N(a){return new A.y9(B.yH,$.aBc(),!1,null)}}
 A.FT.prototype={
 N(a){var s=null,r=A.bS(a,s,t.w).w,q=A.a7t(s,A.a1M("assets/logos/splash_image2.png",B.za,420),s,s,0,0,20,s),p=A.aQ(210,255,255,255),o=t.E
-return A.i0(s,A.apQ(A.iD(A.b([A.iE(A.mb(B.bY,A.b([q,A.iE(A.db(A.a1M("assets/logos/logo_full.png",s,30),s,s),B.x,p,s,s,s,s,1/0)],o),B.I,B.c9),B.x,B.k,s,r.a.b*0.56,s,s,s),new A.GI(new A.ck(new A.ax(20,20),new A.ax(20,20),B.v,B.v),A.iE(new A.c3(B.Cg,A.iD(A.b([new A.c3(B.Cs,A.c_("Welcome",s,s,s,A.bX(s,s,B.lf,s,s,s,s,s,s,s,s,30,s,s,B.aF,s,0,!0,s,s,s,s,s,s,s,s),B.cH,s),s),A.bT(s,20,s),A.c_("Your smart inventory companion. Track stock, manage sales, and grow your business with ease \u2014 all in one place. Let's simplify your workflow and boost your efficiency. \ud83d\ude80",s,s,s,A.bX(s,s,s,s,s,s,s,s,s,s,s,14,s,s,s,s,s,!0,s,s,s,s,s,s,s,s),B.cH,s),A.bT(s,20,s),new A.c3(B.Co,A.iD(A.b([new A.iV("Create an Account",new A.W1(a),s),A.bT(s,10,s),new A.J1("Login",new A.W2(a),s),A.bT(s,50,s)],o),B.ag,B.bj,B.aP,0),s)],o),B.ag,B.bj,B.aP,0),s),B.x,s,new A.du(B.k,s,s,s,s,s,B.aD),s,s,new A.aq(30,0,30,0),s),s)],o),B.ag,B.c5,B.aP,0)))}}
+return A.i0(s,A.apQ(A.iD(A.b([A.iE(A.mb(B.bY,A.b([q,A.iE(A.db(A.a1M("assets/logos/logo_full.png",s,30),s,s),B.x,p,s,s,s,s,1/0)],o),B.I,B.c9),B.x,B.k,s,r.a.b*0.5,s,s,s),new A.GI(new A.ck(new A.ax(20,20),new A.ax(20,20),B.v,B.v),A.iE(new A.c3(B.Cg,A.iD(A.b([new A.c3(B.Cs,A.c_("Welcome",s,s,s,A.bX(s,s,B.lf,s,s,s,s,s,s,s,s,30,s,s,B.aF,s,0,!0,s,s,s,s,s,s,s,s),B.cH,s),s),A.bT(s,20,s),A.c_("Your smart inventory companion. Track stock, manage sales, and grow your business with ease \u2014 all in one place. Let's simplify your workflow and boost your efficiency. \ud83d\ude80",s,s,s,A.bX(s,s,s,s,s,s,s,s,s,s,s,14,s,s,s,s,s,!0,s,s,s,s,s,s,s,s),B.cH,s),A.bT(s,20,s),new A.c3(B.Co,A.iD(A.b([new A.iV("Create an Account",new A.W1(a),s),A.bT(s,10,s),new A.J1("Login",new A.W2(a),s),A.bT(s,50,s)],o),B.ag,B.bj,B.aP,0),s)],o),B.ag,B.bj,B.aP,0),s),B.x,s,new A.du(B.k,s,s,s,s,s,B.aD),s,s,new A.aq(30,0,30,0),s),s)],o),B.ag,B.c5,B.aP,0)))}}
 A.W1.prototype={
 $0(){var s=A.J5(new A.W0(),null,t.z)
 A.j0(this.a).jm(s)},
@@ -83529,7 +83529,7 @@ B.zf=new A.da(0.5,B.cT,B.B1,B.I0,10)
 B.F1=A.b(s([B.zf]),t.sq)
 B.aD=new A.Gj(0,"rectangle")
 B.z9=new A.du(null,null,null,B.kK,B.F1,null,B.aD)
-B.za=new A.Gh(1,"contain")
+B.za=new A.Gh(2,"cover")
 B.zb=new A.Gh(6,"scaleDown")
 B.dG=new A.vM(0,"tight")
 B.zc=new A.vM(1,"max")

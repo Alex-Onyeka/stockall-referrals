@@ -9,9 +9,10 @@ class Shop {
   String? city;
   String? shopAddress;
   String? phoneNumber;
-  String refCode;
+  String? refCode;
   bool isVerified;
   bool isPaid;
+  DateTime? verifiedDate;
 
   Shop({
     this.shopId,
@@ -26,7 +27,8 @@ class Shop {
     this.phoneNumber,
     required this.isPaid,
     required this.isVerified,
-    required this.refCode,
+    this.refCode,
+    required this.verifiedDate,
   });
 
   factory Shop.fromJson(Map<String, dynamic> json) {
@@ -43,7 +45,8 @@ class Shop {
       phoneNumber: json['phone_number'],
       isPaid: json['is_paid'] as bool,
       isVerified: json['is_verified'] as bool,
-      refCode: json['ref_code'],
+      refCode: (json['ref_code']) as String?,
+      verifiedDate: json['verified_date'] as DateTime?,
     );
   }
 
@@ -61,6 +64,7 @@ class Shop {
       'is_verified': isVerified,
       'is_paid': isPaid,
       'ref_code': refCode,
+      'verified_date': verifiedDate,
     };
   }
 }

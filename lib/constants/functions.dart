@@ -4,3 +4,5 @@ bool isValidEmail(String email) {
   );
   return emailRegex.hasMatch(email);
 }
+
+double verifiedPayment = 750;
