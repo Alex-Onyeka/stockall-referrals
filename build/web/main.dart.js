@@ -55208,14 +55208,14 @@ A.VO.prototype={}
 A.VN.prototype={}
 A.zO.prototype={
 a_(a){var s=null
-A.jC("Entered Material Build")
+A.jC("Entered Material Buildd")
 return new A.qu(B.um,A.a3M(s,s,s),!1,s)}}
 A.x_.prototype={
 a_(a){var s,r,q=null
 A.jC("Entered AuthBase Build")
 s=A.cT(a,q,t.w).w
 r=t.eE
-return new A.ry(new A.BE(A.a2q(A.c([A.a2t(A.W4(B.ef,A.c([A.a5y(A.a3p(q,A.a6F("assets/logos/splash_image2.png",B.uA,420),q,q,q,q,20,q),q,q),A.a2t(A.a5y(A.a6F("assets/logos/logo_full.png",q,30),q,q),B.wr,q,q,q,q,1/0)],r),B.h_),B.j,q,s.a.b*0.56,q,q,q),new A.xB(new A.cl(new A.aH(20,20),new A.aH(20,20),B.w,B.w),A.a2t(new A.iO(B.xe,A.a2q(A.c([new A.iO(B.xh,A.a8h("Welcome",A.n1(q,q,B.i6,q,q,q,q,q,q,q,q,30,q,q,B.f1,q,0,!0,q,q,q,q,q,q,q,q),B.cL),q),A.a3C(q,20,q),A.a8h("Your smart inventory companion. Track stock, manage sales, and grow your business with ease \u2014 all in one place. Let's simplify your workflow and boost your efficiency. \ud83d\ude80",A.n1(q,q,q,q,q,q,q,q,q,q,q,14,q,q,q,q,q,!0,q,q,q,q,q,q,q,q),B.cL),A.a3C(q,20,q),new A.iO(B.xg,A.a2q(A.c([A.a3C(q,50,q)],r),B.bv),q)],r),B.bv),q),q,new A.h7(B.j,q,q,q,q,q,B.cR),q,q,new A.bn(30,0,30,0),q),q)],r),B.nT),q),q)}}
+return new A.ry(new A.BE(A.a2q(A.c([A.a2t(A.W4(B.ef,A.c([A.a5y(A.a3p(q,A.a6F("splashImage",B.uA,420),q,q,q,q,20,q),q,q),A.a2t(A.a5y(A.a6F("mainLogoFull",q,30),q,q),B.wr,q,q,q,q,1/0)],r),B.h_),B.j,q,s.a.b*0.56,q,q,q),new A.xB(new A.cl(new A.aH(20,20),new A.aH(20,20),B.w,B.w),A.a2t(new A.iO(B.xe,A.a2q(A.c([new A.iO(B.xh,A.a8h("Welcome",A.n1(q,q,B.i6,q,q,q,q,q,q,q,q,30,q,q,B.f1,q,0,!0,q,q,q,q,q,q,q,q),B.cL),q),A.a3C(q,20,q),A.a8h("Your smart inventory companion. Track stock, manage sales, and grow your business with ease \u2014 all in one place. Let's simplify your workflow and boost your efficiency. \ud83d\ude80",A.n1(q,q,q,q,q,q,q,q,q,q,q,14,q,q,q,q,q,!0,q,q,q,q,q,q,q,q),B.cL),A.a3C(q,20,q),new A.iO(B.xg,A.a2q(A.c([A.a3C(q,50,q)],r),B.bv),q)],r),B.bv),q),q,new A.h7(B.j,q,q,q,q,q,B.cR),q,q,new A.bn(30,0,30,0),q),q)],r),B.nT),q),q)}}
 A.Xl.prototype={}
 A.Xm.prototype={}
 A.aX.prototype={

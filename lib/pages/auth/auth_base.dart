@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 // import 'package:stockallref/components/main_button.dart';
 // import 'package:stockallref/components/main_button_transparent.dart';
-import 'package:stockallref/constants/images.dart';
+// import 'package:stockallref/constants/images.dart';
 // import 'package:stockallref/pages/auth/login.dart';
 // import 'package:stockallref/pages/auth/sign_up.dart';
 
@@ -27,7 +27,7 @@ class AuthBase extends StatelessWidget {
                     child: Positioned(
                       top: 20,
                       child: Image.asset(
-                        splashImage,
+                        'splashImage',
                         height: 420,
                         fit: BoxFit.cover,
                       ),
@@ -43,7 +43,7 @@ class AuthBase extends StatelessWidget {
                     ),
                     child: Center(
                       child: Image.asset(
-                        mainLogoFull,
+                        'mainLogoFull',
                         height: 30,
                       ),
                     ),
