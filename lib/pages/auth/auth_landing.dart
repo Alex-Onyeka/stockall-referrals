@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:stockallref/pages/auth/auth_base.dart';
-import 'package:stockallref/pages/auth/login.dart';
 import 'package:stockallref/pages/home/home_page.dart';
 import 'package:stockallref/supabase/auth_service.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
@@ -40,7 +39,7 @@ class _AuthLandingState extends State<AuthLanding> {
           if (session != null) {
             return HomePage();
           } else {
-            return Login();
+            return AuthBase();
           }
         }
       },
