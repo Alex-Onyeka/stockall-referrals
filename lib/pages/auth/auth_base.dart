@@ -2,14 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:stockallref/components/main_button.dart';
 import 'package:stockallref/components/main_button_transparent.dart';
 import 'package:stockallref/constants/images.dart';
-import 'package:stockallref/pages/auth/login.dart';
-import 'package:stockallref/pages/auth/sign_up.dart';
+// import 'package:stockallref/pages/auth/login.dart';
+// import 'package:stockallref/pages/auth/sign_up.dart';
 
 class AuthBase extends StatelessWidget {
   const AuthBase({super.key});
 
   @override
   Widget build(BuildContext context) {
+    print('Entered AuthBase Build');
     return Scaffold(
       // backgroundColor: Colors.white,
       body: SingleChildScrollView(
@@ -97,14 +98,14 @@ class AuthBase extends StatelessWidget {
                           children: [
                             MainButtonBlue(
                               action: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) {
-                                      return SignUp();
-                                    },
-                                  ),
-                                );
+                                // Navigator.push(
+                                //   context,
+                                //   MaterialPageRoute(
+                                //     builder: (context) {
+                                //       return SignUp();
+                                //     },
+                                //   ),
+                                // );
                               },
                               text: 'Create an Account',
                             ),
@@ -112,14 +113,14 @@ class AuthBase extends StatelessWidget {
                             MainButtonTransparent(
                               text: 'Login',
                               action: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) {
-                                      return Login();
-                                    },
-                                  ),
-                                );
+                                // Navigator.push(
+                                //   context,
+                                //   MaterialPageRoute(
+                                //     builder: (context) {
+                                //       return Login();
+                                //     },
+                                //   ),
+                                // );
                               },
                             ),
                             SizedBox(height: 50),
