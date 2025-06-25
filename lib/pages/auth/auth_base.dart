@@ -27,7 +27,7 @@ class AuthBase extends StatelessWidget {
                     child: Positioned(
                       top: 20,
                       child: Image.asset(
-                        'splashImage',
+                        splashImage,
                         height: 420,
                         fit: BoxFit.cover,
                       ),
@@ -43,7 +43,7 @@ class AuthBase extends StatelessWidget {
                     ),
                     child: Center(
                       child: Image.asset(
-                        'mainLogoFull',
+                        mainLogoFull,
                         height: 30,
                       ),
                     ),

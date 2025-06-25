@@ -46,7 +46,7 @@ class MyApp extends StatelessWidget {
     print('Entered Material Build');
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: lightMode,
+      theme: ThemeData(),
       home: const AuthBase(),
     );
   }
