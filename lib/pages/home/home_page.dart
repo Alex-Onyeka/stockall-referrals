@@ -95,6 +95,20 @@ class _HomePageState extends State<HomePage> {
                           await AuthService().logOut();
                         },
                       ),
+                      SizedBox(height: 10),
+                      MainButtonBlue(
+                        text: 'View Shops',
+                        action: () async {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) {
+                                return ShopsPage();
+                              },
+                            ),
+                          );
+                        },
+                      ),
                     ],
                   ),
                 ),
