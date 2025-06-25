@@ -1,54 +1,44 @@
 import 'package:flutter/material.dart';
 import 'package:stockallref/constants/api.dart';
-import 'package:stockallref/pages/auth/auth_base.dart';
-// import 'package:stockallref/pages/auth/auth_landing.dart';
-// import 'package:stockallref/providers/user_provider.dart';
-// import 'package:stockallref/theme/theme.dart';
+import 'package:stockallref/pages/auth/auth_landing.dart';
+import 'package:stockallref/providers/user_provider.dart';
+import 'package:stockallref/theme/theme.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
-// import 'package:supabase_flutter/supabase_flutter.dart';
-// import 'package:provider/provider.dart';
+import 'package:provider/provider.dart';
 
 void main() async {
-  print('Entered Main Build');
-  // WidgetsFlutterBinding.ensureInitialized();
+  WidgetsFlutterBinding.ensureInitialized();
 
   await Supabase.initialize(url: url, anonKey: anon);
 
-  // ChangeNotifierProvider(create: (_) => UserProvider());
-  // Add other providers here if needed later
-
-  // runApp(
-  //   MultiProvider(
-  //     providers: [
-  //       ChangeNotifierProvider(
-  //         create: (_) => UserProvider(),
-  //       ),
-  //     ],
-  //     child: const MyApp(),
-  //   ),
-  // );
-
-  runApp(const MyApp());
-  print('Entered Main 2');
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (_) => UserProvider(),
+        ),
+      ],
+      child: const MyApp(),
+    ),
+  );
 }
 
-// UserProvider returnUserProvider(
-//   BuildContext context, {
-//   bool listen = false,
-// }) {
-//   return Provider.of<UserProvider>(context, listen: listen);
-// }
+UserProvider returnUserProvider(
+  BuildContext context, {
+  bool listen = false,
+}) {
+  return Provider.of<UserProvider>(context, listen: listen);
+}
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    print('Entered Material Buildd');
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(),
-      home: const AuthBase(),
+      theme: lightMode,
+      home: const AuthLanding(),
     );
   }
 }
