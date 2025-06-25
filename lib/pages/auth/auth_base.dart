@@ -22,19 +22,19 @@ class AuthBase extends StatelessWidget {
               color: Colors.white,
               child: Stack(
                 children: [
-                  Center(
-                    child: Positioned(
-                      top: 20,
-                      child: Image.asset(
-                        splashImage,
-                        height: 420,
-                        fit: BoxFit.contain,
-                      ),
+                  Positioned(
+                    top: 20,
+                    left: 0,
+                    right: 0,
+                    child: Image.asset(
+                      splashImage,
+                      height: 420,
+                      fit: BoxFit.contain,
                     ),
                   ),
                   Container(
                     width: double.infinity,
-                    color: const Color.fromARGB(
+                    color: Color.fromARGB(
                       210,
                       255,
                       255,
