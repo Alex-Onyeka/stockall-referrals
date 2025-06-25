@@ -48,6 +48,9 @@ class _LoginState extends State<Login> {
         }
       }
     } catch (e) {
+      setState(() {
+        isLoading = false;
+      });
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(

@@ -19,6 +19,15 @@ class _HomePageState extends State<HomePage> {
     ).getReferreeById(AuthService().currentUser!.id);
   }
 
+  Future<void> fetchShops() async {
+    await returnShopProvider(
+      context,
+      listen: false,
+    ).fetchReferreeShops(
+      returnUserProvider(context).currentReferree!.refCode,
+    );
+  }
+
   late Future<void> userFuture;
 
   @override
@@ -30,7 +39,13 @@ class _HomePageState extends State<HomePage> {
         ).currentReferree ==
         null) {
       userFuture = getUser();
+      initFutures();
     }
+  }
+
+  Future<void> initFutures() async {
+    await getUser();
+    await fetchShops();
   }
 
   @override
@@ -87,6 +102,18 @@ class _HomePageState extends State<HomePage> {
                             : returnUserProvider(
                               context,
                             ).currentReferree!.name,
+                      ),
+                      Text(
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                        ),
+                        returnShopProvider(context)
+                            .getCurrentWeekPaidShops(
+                              context,
+                            )
+                            .length
+                            .toString(),
                       ),
                       SizedBox(height: 20),
                       MainButtonBlue(
@@ -149,6 +176,16 @@ class _HomePageState extends State<HomePage> {
                       : returnUserProvider(
                         context,
                       ).currentReferree!.name,
+                ),
+                Text(
+                  style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                  ),
+                  returnShopProvider(context)
+                      .getCurrentWeekPaidShops(context)
+                      .length
+                      .toString(),
                 ),
                 SizedBox(height: 20),
                 MainButtonBlue(
