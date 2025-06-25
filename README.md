@@ -1,16 +1,29 @@
-# stockallref
+# Stockall Referrals App
 
-A new Flutter project.
+Welcome to the official referral portal for **Stockall**!  
+This Flutter-powered app is designed specifically for users who register through referral links or codes.
 
-## Getting Started
+---
 
-This project is a starting point for a Flutter application.
+## 🚀 Overview
 
-A few resources to get you started if this is your first Flutter project:
+The **Stockall Referrals App** is a standalone companion platform that:
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+- Lets referred users register and get started with Stockall
+- Displays personalized onboarding content and messages
+- Integrates with the main Stockall backend
+- Helps us track and reward referrals efficiently
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+---
+
+## 📦 Tech Stack
+
+- **Flutter** (mobile & web support)
+- **Supabase** (Auth & Database)
+- **Provider** (State Management)
+- **Hosted on** Vercel
+
+---
+
+## 📂 Folder Structure
+
