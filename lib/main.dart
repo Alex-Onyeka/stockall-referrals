@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:stockallref/pages/auth/auth_base.dart';
 // import 'package:stockallref/pages/auth/auth_landing.dart';
 // import 'package:stockallref/providers/user_provider.dart';
-// import 'package:stockallref/theme/theme.dart';
+import 'package:stockallref/theme/theme.dart';
 // import 'package:supabase_flutter/supabase_flutter.dart';
 // import 'package:provider/provider.dart';
 
@@ -46,7 +46,7 @@ class MyApp extends StatelessWidget {
     print('Entered Material Build');
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      // theme: ThemeData(),
+      theme: lightMode,
       home: const AuthBase(),
     );
   }
