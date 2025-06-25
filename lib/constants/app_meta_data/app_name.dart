@@ -1,1 +1,1 @@
-// String appName = 'Stockall';
+String appName = 'Stockall';

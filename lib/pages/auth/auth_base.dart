@@ -151,14 +151,14 @@
 // }
 
 import 'package:flutter/material.dart';
-// import 'package:stockallref/components/email_textfield.dart';
-// import 'package:stockallref/components/general_textfield.dart';
-// import 'package:stockallref/components/main_button.dart';
-// import 'package:stockallref/components/password_textfield.dart';
-// import 'package:stockallref/constants/functions.dart';
-// import 'package:stockallref/constants/images.dart';
-// import 'package:stockallref/supabase/auth_service.dart';
-// import 'package:stockallref/theme/theme.dart';
+import 'package:stockallref/components/email_textfield.dart';
+import 'package:stockallref/components/general_textfield.dart';
+import 'package:stockallref/components/main_button.dart';
+import 'package:stockallref/components/password_textfield.dart';
+import 'package:stockallref/constants/functions.dart';
+import 'package:stockallref/constants/images.dart';
+import 'package:stockallref/supabase/auth_service.dart';
+import 'package:stockallref/theme/theme.dart';
 
 class AuthBase extends StatefulWidget {
   const AuthBase({super.key});
@@ -177,62 +177,62 @@ class _AuthBaseState extends State<AuthBase> {
       TextEditingController();
   bool isLoading = false;
 
-  // final supabase = AuthService();
-  // Future<void> createAccount() async {
-  //   try {
-  //     if (email.text.isEmpty ||
-  //         password.text.isEmpty ||
-  //         confirmPassword.text.isEmpty ||
-  //         name.text.isEmpty ||
-  //         state.text.isEmpty ||
-  //         phone.text.isEmpty) {
-  //       ScaffoldMessenger.of(context).showSnackBar(
-  //         SnackBar(
-  //           content: Text(
-  //             'All Fields must be set before account can be created',
-  //           ),
-  //         ),
-  //       );
-  //     } else if (!isValidEmail(email.text)) {
-  //       ScaffoldMessenger.of(context).showSnackBar(
-  //         SnackBar(content: Text('Email Not Valid')),
-  //       );
-  //     } else if (password.text != confirmPassword.text) {
-  //       ScaffoldMessenger.of(context).showSnackBar(
-  //         SnackBar(
-  //           content: Text('Password Does not match'),
-  //         ),
-  //       );
-  //     } else {
-  //       setState(() {
-  //         isLoading = true;
-  //       });
-  //       await supabase.createAccount(
-  //         email: email.text.trim(),
-  //         password: password.text.trim(),
-  //         name: name.text.trim(),
-  //         phone: phone.text.trim(),
-  //         state: state.text.trim(),
-  //       );
-  //       if (mounted) {
-  //         Navigator.of(context).pop();
-  //       }
-  //     }
-  //   } catch (e) {
-  //     setState(() {
-  //       isLoading = false;
-  //     });
-  //     if (mounted) {
-  //       ScaffoldMessenger.of(context).showSnackBar(
-  //         SnackBar(
-  //           content: Text(
-  //             'Failed to create Account: ${e.toString().split(',')[0].split(':')[1]}',
-  //           ),
-  //         ),
-  //       );
-  //     }
-  //   }
-  // }
+  final supabase = AuthService();
+  Future<void> createAccount() async {
+    try {
+      if (email.text.isEmpty ||
+          password.text.isEmpty ||
+          confirmPassword.text.isEmpty ||
+          name.text.isEmpty ||
+          state.text.isEmpty ||
+          phone.text.isEmpty) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(
+              'All Fields must be set before account can be created',
+            ),
+          ),
+        );
+      } else if (!isValidEmail(email.text)) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Email Not Valid')),
+        );
+      } else if (password.text != confirmPassword.text) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('Password Does not match'),
+          ),
+        );
+      } else {
+        setState(() {
+          isLoading = true;
+        });
+        await supabase.createAccount(
+          email: email.text.trim(),
+          password: password.text.trim(),
+          name: name.text.trim(),
+          phone: phone.text.trim(),
+          state: state.text.trim(),
+        );
+        if (mounted) {
+          Navigator.of(context).pop();
+        }
+      }
+    } catch (e) {
+      setState(() {
+        isLoading = false;
+      });
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(
+              'Failed to create Account: ${e.toString().split(',')[0].split(':')[1]}',
+            ),
+          ),
+        );
+      }
+    }
+  }
 
   @override
   void dispose() {
@@ -264,7 +264,7 @@ class _AuthBaseState extends State<AuthBase> {
                     child: Column(
                       children: [
                         Image.asset(
-                          'mainLogoFull',
+                          mainLogoFull,
                           height: 25,
                         ),
                         SizedBox(height: 15),
@@ -327,45 +327,45 @@ class _AuthBaseState extends State<AuthBase> {
                                     'Enter All necessary info below to Create an account.',
                                   ),
                                 ),
-                                // SizedBox(height: 10),
-                                // GeneralTextfield(
-                                //   controller: name,
-                                //   label: 'Enter Name',
-                                // ),
-                                // SizedBox(height: 5),
-                                // TextFieldEmail(
-                                //   controller: email,
-                                // ),
-                                // SizedBox(height: 5),
-                                // TextFieldPassword(
-                                //   controller: password,
-                                //   label: 'Enter Password',
-                                // ),
-                                // SizedBox(height: 5),
-                                // TextFieldPassword(
-                                //   controller:
-                                //       confirmPassword,
-                                //   label: 'Confirm Password',
-                                // ),
-                                // SizedBox(height: 5),
-                                // GeneralTextfield(
-                                //   controller: phone,
-                                //   label:
-                                //       'Enter Phone Number',
-                                //   isPhone: true,
-                                // ),
-                                // SizedBox(height: 5),
-                                // GeneralTextfield(
-                                //   controller: state,
-                                //   label: 'Enter State',
-                                // ),
-                                // SizedBox(height: 10),
-                                // MainButtonBlue(
-                                //   action: () async {
-                                //     await createAccount();
-                                //   },
-                                //   text: 'Sign Up',
-                                // ),
+                                SizedBox(height: 10),
+                                GeneralTextfield(
+                                  controller: name,
+                                  label: 'Enter Name',
+                                ),
+                                SizedBox(height: 5),
+                                TextFieldEmail(
+                                  controller: email,
+                                ),
+                                SizedBox(height: 5),
+                                TextFieldPassword(
+                                  controller: password,
+                                  label: 'Enter Password',
+                                ),
+                                SizedBox(height: 5),
+                                TextFieldPassword(
+                                  controller:
+                                      confirmPassword,
+                                  label: 'Confirm Password',
+                                ),
+                                SizedBox(height: 5),
+                                GeneralTextfield(
+                                  controller: phone,
+                                  label:
+                                      'Enter Phone Number',
+                                  isPhone: true,
+                                ),
+                                SizedBox(height: 5),
+                                GeneralTextfield(
+                                  controller: state,
+                                  label: 'Enter State',
+                                ),
+                                SizedBox(height: 10),
+                                MainButtonBlue(
+                                  action: () async {
+                                    await createAccount();
+                                  },
+                                  text: 'Sign Up',
+                                ),
                                 SizedBox(height: 10),
                                 Material(
                                   color: Colors.transparent,
@@ -400,17 +400,17 @@ class _AuthBaseState extends State<AuthBase> {
                                                 ),
                                                 'Already Have an Account? ',
                                               ),
-                                              // Text(
-                                              //   style: TextStyle(
-                                              //     color: secondary(
-                                              //       context,
-                                              //     ),
-                                              //     fontWeight:
-                                              //         FontWeight
-                                              //             .w700,
-                                              //   ),
-                                              //   'Login',
-                                              // ),
+                                              Text(
+                                                style: TextStyle(
+                                                  color: secondary(
+                                                    context,
+                                                  ),
+                                                  fontWeight:
+                                                      FontWeight
+                                                          .w700,
+                                                ),
+                                                'Login',
+                                              ),
                                             ],
                                           ),
                                         ),

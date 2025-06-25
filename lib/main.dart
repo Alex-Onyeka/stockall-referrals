@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-// import 'package:stockallref/constants/api.dart';
+import 'package:stockallref/constants/api.dart';
 import 'package:stockallref/pages/auth/auth_base.dart';
 // import 'package:stockallref/pages/auth/auth_landing.dart';
 // import 'package:stockallref/providers/user_provider.dart';
-import 'package:stockallref/theme/theme.dart';
+// import 'package:stockallref/theme/theme.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 // import 'package:supabase_flutter/supabase_flutter.dart';
 // import 'package:provider/provider.dart';
 
@@ -11,7 +12,7 @@ void main() async {
   print('Entered Main Build');
   // WidgetsFlutterBinding.ensureInitialized();
 
-  // await Supabase.initialize(url: url, anonKey: anon);
+  await Supabase.initialize(url: url, anonKey: anon);
 
   // ChangeNotifierProvider(create: (_) => UserProvider());
   // Add other providers here if needed later
