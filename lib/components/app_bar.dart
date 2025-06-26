@@ -3,20 +3,35 @@ import 'package:stockallref/theme/theme.dart';
 
 class TopNavBar extends StatelessWidget {
   final String title;
-  const TopNavBar({super.key, required this.title});
+  final Widget? widget;
+  final double amount;
+  const TopNavBar({
+    super.key,
+    required this.title,
+    this.widget,
+    required this.amount,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.only(bottom: 10),
-      padding: EdgeInsets.fromLTRB(15, 15, 15, 20),
+      padding: EdgeInsets.fromLTRB(
+        15,
+        amount,
+        15,
+        amount + 5,
+      ),
       decoration: BoxDecoration(
         border: Border(
           bottom: BorderSide(color: Colors.grey.shade200),
         ),
       ),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        mainAxisAlignment:
+            widget != null
+                ? MainAxisAlignment.spaceBetween
+                : MainAxisAlignment.start,
         children: [
           Row(
             spacing: 5,
@@ -46,7 +61,7 @@ class TopNavBar extends StatelessWidget {
               ),
             ],
           ),
-          Icon(Icons.menu),
+          widget ?? Container(),
         ],
       ),
     );

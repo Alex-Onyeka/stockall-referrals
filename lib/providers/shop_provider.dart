@@ -74,6 +74,32 @@ class ShopProvider with ChangeNotifier {
     notifyListeners();
   }
 
+  int currentFilter = 0;
+
+  void filterAction(int number) {
+    currentFilter = number;
+    notifyListeners();
+  }
+
+  List<Shop> filterResult(BuildContext context) {
+    switch (currentFilter) {
+      case 0:
+        return getReferreeShops(context);
+      case 1:
+        return getCurrentWeekRegisteredShops(context);
+      case 2:
+        return getUnVerifiedShops(context);
+      case 3:
+        return getCurrentWeekVerifiedShops(context);
+      case 4:
+        return getUnPaidShops(context);
+      case 5:
+        return getCurrentWeekPaidShops(context);
+      default:
+        return getReferreeShops(context);
+    }
+  }
+
   /// Get shop by ID
   Shop? getShopById(int id) {
     return _refShops.firstWhere((s) => s.shopId == id);
@@ -86,7 +112,7 @@ class ShopProvider with ChangeNotifier {
           (shop) =>
               shop.refCode != null &&
               shop.refCode ==
-                  userProider.currentReferree?.refCode,
+                  userProider.currentReferree!.refCode,
         )
         .toList();
   }
@@ -97,7 +123,7 @@ class ShopProvider with ChangeNotifier {
     ).where((shop) => shop.isVerified == true).toList();
   }
 
-  List<Shop> getCurrentWeekVerifiedShops(
+  List<Shop> getCurrentWeekRegisteredShops(
     BuildContext context,
   ) {
     final now = DateTime.now();
@@ -108,21 +134,55 @@ class ShopProvider with ChangeNotifier {
       Duration(days: 6),
     ); // Sunday
 
-    return getReferreeShops(context)
+    return _refShops
         .where(
           (shop) =>
-              shop.isVerified &&
-              shop.verifiedDate != null &&
-              shop.verifiedDate!.isAfter(
+              shop.createdAt.isAfter(
                 startOfWeek.subtract(
                   const Duration(seconds: 1),
                 ),
               ) &&
-              shop.verifiedDate!.isBefore(
+              shop.createdAt.isBefore(
                 endOfWeek.add(const Duration(days: 1)),
               ),
         )
         .toList();
+  }
+
+  List<Shop> getCurrentWeekVerifiedShops(
+    BuildContext context,
+  ) {
+    final now = DateTime.now();
+
+    // Start of the week: Monday at 00:00:00
+    final startOfWeek = DateTime(
+      now.year,
+      now.month,
+      now.day,
+    ).subtract(Duration(days: now.weekday - 1));
+
+    // End of the week: Sunday at 23:59:59.999
+    final endOfWeek = startOfWeek.add(
+      Duration(
+        days: 6,
+        hours: 23,
+        minutes: 59,
+        seconds: 59,
+        milliseconds: 999,
+      ),
+    );
+
+    return _refShops.where((shop) {
+      final verifiedDate = shop.verifiedDate;
+      return shop.isVerified &&
+          verifiedDate != null &&
+          verifiedDate.isAfter(
+            startOfWeek.subtract(
+              const Duration(seconds: 1),
+            ),
+          ) &&
+          verifiedDate.isBefore(endOfWeek);
+    }).toList();
   }
 
   List<Shop> getUnVerifiedShops(BuildContext context) {

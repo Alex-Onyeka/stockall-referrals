@@ -46,7 +46,10 @@ class Shop {
       isPaid: json['is_paid'] as bool,
       isVerified: json['is_verified'] as bool,
       refCode: (json['ref_code']) as String?,
-      verifiedDate: json['verified_date'] as DateTime?,
+      verifiedDate:
+          json['verified_date'] == null
+              ? null
+              : DateTime.parse(json['verified_date']),
     );
   }
 

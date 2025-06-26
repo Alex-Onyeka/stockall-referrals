@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:stockallref/theme/theme.dart';
 
-class ContainerWidget extends StatelessWidget {
+class ContainerWidget extends StatefulWidget {
   final String title;
   final String number;
   final bool isAllTime;
@@ -15,6 +15,12 @@ class ContainerWidget extends StatelessWidget {
     this.isTotalRevenue,
   });
 
+  @override
+  State<ContainerWidget> createState() =>
+      _ContainerWidgetState();
+}
+
+class _ContainerWidgetState extends State<ContainerWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -30,33 +36,33 @@ class ContainerWidget extends StatelessWidget {
           children: [
             Row(
               mainAxisAlignment:
-                  isTotalRevenue != null
+                  widget.isTotalRevenue != null
                       ? MainAxisAlignment.center
                       : MainAxisAlignment.start,
               children: [
                 Text(
                   style: TextStyle(
-                    fontSize: isAllTime ? 14 : 12,
+                    fontSize: widget.isAllTime ? 14 : 12,
                     color: Colors.grey.shade600,
                   ),
-                  title,
+                  widget.title,
                 ),
               ],
             ),
             Row(
               mainAxisAlignment:
-                  isTotalRevenue != null
+                  widget.isTotalRevenue != null
                       ? MainAxisAlignment.center
                       : MainAxisAlignment.start,
               children: [
                 Text(
                   textAlign: TextAlign.left,
                   style: TextStyle(
-                    fontSize: isAllTime ? 25 : 18,
+                    fontSize: widget.isAllTime ? 25 : 18,
                     fontWeight: FontWeight.bold,
                     color: primary(context),
                   ),
-                  number,
+                  widget.number,
                 ),
               ],
             ),

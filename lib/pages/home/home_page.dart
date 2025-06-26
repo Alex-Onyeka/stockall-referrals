@@ -3,7 +3,9 @@ import 'package:stockallref/components/app_bar.dart';
 import 'package:stockallref/components/bottom_nav.dart';
 import 'package:stockallref/main.dart';
 import 'package:stockallref/pages/home/dashoard.dart';
+import 'package:stockallref/pages/shops/shops_page.dart';
 import 'package:stockallref/supabase/auth_service.dart';
+import 'package:stockallref/theme/theme.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -24,79 +26,394 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
-    userFuture = getUser();
+    if (returnUserProvider(
+          context,
+          listen: false,
+        ).currentReferree ==
+        null) {
+      userFuture = getUser();
+    }
   }
 
   int currentIndex = 0;
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: FutureBuilder(
-        future: userFuture,
-        builder: (context, snapshot) {
-          if (snapshot.connectionState ==
-              ConnectionState.waiting) {
-            return Scaffold(
-              body: Center(
-                child: CircularProgressIndicator(),
+    if (returnUserProvider(context).currentReferree ==
+        null) {
+      return SafeArea(
+        child: FutureBuilder(
+          future: userFuture,
+          builder: (context, snapshot) {
+            if (snapshot.connectionState ==
+                ConnectionState.waiting) {
+              return Scaffold(
+                body: Center(
+                  child: CircularProgressIndicator(),
+                ),
+              );
+            } else if (snapshot.hasError) {
+              return Scaffold(
+                body: Center(
+                  child: Text('An Error Occured'),
+                ),
+              );
+            } else {
+              return Scaffold(
+                body: Column(
+                  children: [
+                    TopNavBar(
+                      amount: currentIndex == 1 ? 10 : 15,
+                      title:
+                          returnUserProvider(
+                            context,
+                          ).currentReferree!.name,
+                    ),
+                    Expanded(
+                      child: Builder(
+                        builder: (context) {
+                          if (currentIndex == 0) {
+                            return Dashboard();
+                          } else if (currentIndex == 1) {
+                            return ShopsPage();
+                          } else {
+                            return Scaffold();
+                          }
+                        },
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 20.0,
+                      ),
+                      child: BottomNav(
+                        currentIndex: currentIndex,
+                        action: () {
+                          setState(() {
+                            currentIndex = 0;
+                          });
+                        },
+                        action2: () {
+                          setState(() {
+                            currentIndex = 1;
+                          });
+                        },
+                        action3: () {
+                          setState(() {
+                            currentIndex = 2;
+                          });
+                        },
+                      ),
+                    ),
+                  ],
+                ),
+              );
+            }
+          },
+        ),
+      );
+    } else {
+      return SafeArea(
+        child: Scaffold(
+          body: Column(
+            children: [
+              TopNavBar(
+                amount: currentIndex == 1 ? 10 : 15,
+                title:
+                    returnUserProvider(
+                      context,
+                    ).currentReferree!.name,
+                widget:
+                    currentIndex == 1
+                        ? PopupMenuButton(
+                          offset: Offset(-20, 30),
+                          color: Colors.white,
+                          itemBuilder: (context) {
+                            return [
+                              PopupMenuItem(
+                                onTap: () {
+                                  returnShopProvider(
+                                    context,
+                                    listen: false,
+                                  ).filterAction(0);
+                                },
+                                child: Padding(
+                                  padding:
+                                      const EdgeInsets.only(
+                                        left: 10.0,
+                                        right: 15,
+                                      ),
+                                  child: Text(
+                                    style: TextStyle(
+                                      fontWeight:
+                                          returnShopProvider(
+                                                    context,
+                                                  ).currentFilter ==
+                                                  0
+                                              ? FontWeight
+                                                  .bold
+                                              : FontWeight
+                                                  .normal,
+                                      color:
+                                          returnShopProvider(
+                                                    context,
+                                                  ).currentFilter ==
+                                                  0
+                                              ? primary(
+                                                context,
+                                              )
+                                              : Colors
+                                                  .grey
+                                                  .shade400,
+                                    ),
+                                    'All Shops',
+                                  ),
+                                ),
+                              ),
+                              PopupMenuItem(
+                                onTap: () {
+                                  returnShopProvider(
+                                    context,
+                                    listen: false,
+                                  ).filterAction(1);
+                                },
+                                child: Padding(
+                                  padding:
+                                      const EdgeInsets.only(
+                                        left: 10.0,
+                                        right: 15,
+                                      ),
+                                  child: Text(
+                                    style: TextStyle(
+                                      fontWeight:
+                                          returnShopProvider(
+                                                    context,
+                                                  ).currentFilter ==
+                                                  1
+                                              ? FontWeight
+                                                  .bold
+                                              : FontWeight
+                                                  .normal,
+                                      color:
+                                          returnShopProvider(
+                                                    context,
+                                                  ).currentFilter ==
+                                                  1
+                                              ? primary(
+                                                context,
+                                              )
+                                              : Colors
+                                                  .grey
+                                                  .shade400,
+                                    ),
+                                    'Weeks Registered Shops',
+                                  ),
+                                ),
+                              ),
+                              PopupMenuItem(
+                                onTap: () {
+                                  returnShopProvider(
+                                    context,
+                                    listen: false,
+                                  ).filterAction(2);
+                                },
+                                child: Padding(
+                                  padding:
+                                      const EdgeInsets.only(
+                                        left: 10.0,
+                                        right: 15,
+                                      ),
+                                  child: Text(
+                                    style: TextStyle(
+                                      fontWeight:
+                                          returnShopProvider(
+                                                    context,
+                                                  ).currentFilter ==
+                                                  2
+                                              ? FontWeight
+                                                  .bold
+                                              : FontWeight
+                                                  .normal,
+                                      color:
+                                          returnShopProvider(
+                                                    context,
+                                                  ).currentFilter ==
+                                                  2
+                                              ? primary(
+                                                context,
+                                              )
+                                              : Colors
+                                                  .grey
+                                                  .shade400,
+                                    ),
+                                    'Weeks Unverified Shops',
+                                  ),
+                                ),
+                              ),
+                              PopupMenuItem(
+                                onTap: () {
+                                  returnShopProvider(
+                                    context,
+                                    listen: false,
+                                  ).filterAction(3);
+                                },
+                                child: Padding(
+                                  padding:
+                                      const EdgeInsets.only(
+                                        left: 10.0,
+                                        right: 15,
+                                      ),
+                                  child: Text(
+                                    style: TextStyle(
+                                      fontWeight:
+                                          returnShopProvider(
+                                                    context,
+                                                  ).currentFilter ==
+                                                  3
+                                              ? FontWeight
+                                                  .bold
+                                              : FontWeight
+                                                  .normal,
+                                      color:
+                                          returnShopProvider(
+                                                    context,
+                                                  ).currentFilter ==
+                                                  3
+                                              ? primary(
+                                                context,
+                                              )
+                                              : Colors
+                                                  .grey
+                                                  .shade400,
+                                    ),
+                                    'Weeks Verified Shops',
+                                  ),
+                                ),
+                              ),
+                              PopupMenuItem(
+                                onTap: () {
+                                  returnShopProvider(
+                                    context,
+                                    listen: false,
+                                  ).filterAction(4);
+                                },
+                                child: Padding(
+                                  padding:
+                                      const EdgeInsets.only(
+                                        left: 10.0,
+                                        right: 15,
+                                      ),
+                                  child: Text(
+                                    style: TextStyle(
+                                      fontWeight:
+                                          returnShopProvider(
+                                                    context,
+                                                  ).currentFilter ==
+                                                  4
+                                              ? FontWeight
+                                                  .bold
+                                              : FontWeight
+                                                  .normal,
+                                      color:
+                                          returnShopProvider(
+                                                    context,
+                                                  ).currentFilter ==
+                                                  4
+                                              ? primary(
+                                                context,
+                                              )
+                                              : Colors
+                                                  .grey
+                                                  .shade400,
+                                    ),
+                                    'Weeks Unpaid Shops',
+                                  ),
+                                ),
+                              ),
+                              PopupMenuItem(
+                                onTap: () {
+                                  returnShopProvider(
+                                    context,
+                                    listen: false,
+                                  ).filterAction(5);
+                                },
+                                child: Padding(
+                                  padding:
+                                      const EdgeInsets.only(
+                                        left: 10.0,
+                                        right: 15,
+                                      ),
+                                  child: Text(
+                                    style: TextStyle(
+                                      fontWeight:
+                                          returnShopProvider(
+                                                    context,
+                                                  ).currentFilter ==
+                                                  5
+                                              ? FontWeight
+                                                  .bold
+                                              : FontWeight
+                                                  .normal,
+                                      color:
+                                          returnShopProvider(
+                                                    context,
+                                                  ).currentFilter ==
+                                                  5
+                                              ? primary(
+                                                context,
+                                              )
+                                              : Colors
+                                                  .grey
+                                                  .shade400,
+                                    ),
+                                    'Weeks Paid Shops',
+                                  ),
+                                ),
+                              ),
+                            ];
+                          },
+                        )
+                        : null,
               ),
-            );
-          } else if (snapshot.hasError) {
-            return Scaffold(
-              body: Center(child: Text('An Error Occured')),
-            );
-          } else {
-            return Scaffold(
-              body: Column(
-                children: [
-                  TopNavBar(
-                    title:
-                        returnUserProvider(
-                          context,
-                        ).currentReferree!.name,
-                  ),
-                  Expanded(
-                    child: Builder(
-                      builder: (context) {
-                        if (currentIndex == 0) {
-                          return Dashboard();
-                        } else if (currentIndex == 1) {
-                          return Scaffold();
-                        } else {
-                          return Scaffold();
-                        }
-                      },
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 20.0,
-                    ),
-                    child: BottomNav(
-                      currentIndex: currentIndex,
-                      action: () {
-                        setState(() {
-                          currentIndex = 0;
-                        });
-                      },
-                      action2: () {
-                        setState(() {
-                          currentIndex = 1;
-                        });
-                      },
-                      action3: () {
-                        setState(() {
-                          currentIndex = 2;
-                        });
-                      },
-                    ),
-                  ),
-                ],
+              Expanded(
+                child: Builder(
+                  builder: (context) {
+                    if (currentIndex == 0) {
+                      return Dashboard();
+                    } else if (currentIndex == 1) {
+                      return ShopsPage();
+                    } else {
+                      return Scaffold();
+                    }
+                  },
+                ),
               ),
-            );
-          }
-        },
-      ),
-    );
+              Padding(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 20.0,
+                ),
+                child: BottomNav(
+                  currentIndex: currentIndex,
+                  action: () {
+                    setState(() {
+                      currentIndex = 0;
+                    });
+                  },
+                  action2: () {
+                    setState(() {
+                      currentIndex = 1;
+                    });
+                  },
+                  action3: () {
+                    setState(() {
+                      currentIndex = 2;
+                    });
+                  },
+                ),
+              ),
+            ],
+          ),
+        ),
+      );
+    }
   }
 }

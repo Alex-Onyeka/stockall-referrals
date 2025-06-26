@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:stockallref/components/container_widget.dart';
 import 'package:stockallref/components/main_button.dart';
+import 'package:stockallref/constants/functions.dart';
 import 'package:stockallref/main.dart';
+import 'package:stockallref/pages/home/home_page.dart';
 import 'package:stockallref/supabase/auth_service.dart';
 import 'package:stockallref/theme/theme.dart';
 
@@ -34,17 +36,11 @@ class _DashboardRefState extends State<DashboardRef> {
   @override
   void initState() {
     super.initState();
-    if (returnUserProvider(
-              context,
-              listen: false,
-            ).currentReferree !=
+    if (returnUserProvider(context).currentReferree !=
             null &&
-        returnShopProvider(
-          context,
-          listen: false,
-        ).refShops.isEmpty) {
+        returnShopProvider(context).refShops.isEmpty) {
       shopsFuture = fetchShops();
-      fetchShops();
+      // fetchShops();
     }
   }
 
@@ -55,10 +51,8 @@ class _DashboardRefState extends State<DashboardRef> {
 
   @override
   Widget build(BuildContext context) {
-    if (returnShopProvider(
-      context,
-      listen: false,
-    ).refShops.isEmpty) {
+    // var shopProvider = returnShopProvider(context);
+    if (returnShopProvider(context).refShops.isEmpty) {
       return FutureBuilder(
         future: shopsFuture,
         builder: (context, snapshot) {
@@ -100,14 +94,17 @@ class _DashboardRefState extends State<DashboardRef> {
                                     fontWeight:
                                         FontWeight.bold,
                                   ),
-                                  'All Time Records',
+                                  'All Time Record',
                                 ),
                               ],
                             ),
                             SizedBox(height: 15),
                             ContainerWidget(
                               isAllTime: true,
-                              number: '25',
+                              number: returnShopProvider(
+                                    context,
+                                  ).refShops.length
+                                  .toStringAsFixed(0),
                               title:
                                   'Total Shops Registered',
                             ),
@@ -121,22 +118,33 @@ class _DashboardRefState extends State<DashboardRef> {
                                 Expanded(
                                   child: ContainerWidget(
                                     isAllTime: false,
-                                    number: '25',
+                                    number: returnShopProvider(
+                                          context,
+                                        )
+                                        .getVerifiedShops(
+                                          context,
+                                        )
+                                        .length
+                                        .toStringAsFixed(0),
                                     title: 'Total Verified',
                                   ),
                                 ),
                                 Expanded(
                                   child: ContainerWidget(
                                     isAllTime: false,
-                                    number: 'N25',
+                                    number: formatMoney(
+                                      returnShopProvider(
+                                        context,
+                                      ).getTotalRevenueMade(
+                                        context,
+                                      ),
+                                    ),
                                     title: 'Total Revenue',
                                   ),
                                 ),
                               ],
                             ),
                             SizedBox(height: 30),
-                            // Divider(color: primary(context)),
-                            // SizedBox(height: 15),
                             Row(
                               children: [
                                 Text(
@@ -145,14 +153,21 @@ class _DashboardRefState extends State<DashboardRef> {
                                     fontWeight:
                                         FontWeight.bold,
                                   ),
-                                  'Current Week Records',
+                                  'Current Week Record',
                                 ),
                               ],
                             ),
                             SizedBox(height: 15),
                             ContainerWidget(
                               isAllTime: false,
-                              number: '25',
+                              number: returnShopProvider(
+                                    context,
+                                  )
+                                  .getCurrentWeekRegisteredShops(
+                                    context,
+                                  )
+                                  .length
+                                  .toStringAsFixed(0),
                               title: 'Total Registered',
                             ),
                             SizedBox(height: 15),
@@ -165,16 +180,30 @@ class _DashboardRefState extends State<DashboardRef> {
                                 Expanded(
                                   child: ContainerWidget(
                                     isAllTime: false,
-                                    number: '25',
-                                    title: 'Total Verified',
+                                    number: returnShopProvider(
+                                          context,
+                                        )
+                                        .getUnVerifiedShops(
+                                          context,
+                                        )
+                                        .length
+                                        .toStringAsFixed(0),
+                                    title:
+                                        'Total Unverified',
                                   ),
                                 ),
                                 Expanded(
                                   child: ContainerWidget(
                                     isAllTime: false,
-                                    number: '25',
-                                    title:
-                                        'Total Unverified',
+                                    number: returnShopProvider(
+                                          context,
+                                        )
+                                        .getCurrentWeekVerifiedShops(
+                                          context,
+                                        )
+                                        .length
+                                        .toStringAsFixed(0),
+                                    title: 'Total Verified',
                                   ),
                                 ),
                               ],
@@ -189,36 +218,64 @@ class _DashboardRefState extends State<DashboardRef> {
                                 Expanded(
                                   child: ContainerWidget(
                                     isAllTime: false,
-                                    number: '25',
+                                    number:
+                                        returnShopProvider(
+                                              context,
+                                            )
+                                            .getUnPaidShops(
+                                              context,
+                                            )
+                                            .length
+                                            .toStringAsFixed(
+                                              0,
+                                            ),
                                     title: 'Total Unpaid',
                                   ),
                                 ),
                                 Expanded(
                                   child: ContainerWidget(
                                     isAllTime: false,
-                                    number: '25',
+                                    number: returnShopProvider(
+                                          context,
+                                        )
+                                        .getCurrentWeekPaidShops(
+                                          context,
+                                        )
+                                        .length
+                                        .toStringAsFixed(0),
                                     title: 'Total Paid',
                                   ),
                                 ),
                               ],
                             ),
-                            // SizedBox(height: 20),
-                            // Divider(
-                            //   color: primaryFaint(context),
-                            // ),
                             SizedBox(height: 25),
                             ContainerWidget(
                               isAllTime: false,
                               isTotalRevenue: true,
-                              number: 'N25',
+                              number: formatMoney(
+                                returnShopProvider(
+                                  context,
+                                ).getTotalRevenueCurrentWeek(
+                                  context,
+                                ),
+                              ),
                               title: 'Total Revenue',
                             ),
-                            SizedBox(height: 15),
+                            SizedBox(height: 20),
                             MainButtonBlue(
-                              text: 'Logout',
+                              text: 'Refresh',
                               action: () async {
-                                await AuthService()
-                                    .logOut();
+                                await initFutures();
+                                if (context.mounted) {
+                                  Navigator.pushReplacement(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) {
+                                        return HomePage();
+                                      },
+                                    ),
+                                  );
+                                }
                               },
                             ),
                           ],
@@ -258,14 +315,17 @@ class _DashboardRefState extends State<DashboardRef> {
                               color: primary(context),
                               fontWeight: FontWeight.bold,
                             ),
-                            'All Time Records',
+                            'All Time Record',
                           ),
                         ],
                       ),
                       SizedBox(height: 15),
                       ContainerWidget(
                         isAllTime: true,
-                        number: '25',
+                        number: returnShopProvider(context)
+                            .refShops
+                            .length
+                            .toStringAsFixed(0),
                         title: 'Total Shops Registered',
                       ),
                       SizedBox(height: 15),
@@ -277,22 +337,31 @@ class _DashboardRefState extends State<DashboardRef> {
                           Expanded(
                             child: ContainerWidget(
                               isAllTime: false,
-                              number: '25',
+                              number: returnShopProvider(
+                                    context,
+                                  )
+                                  .getVerifiedShops(context)
+                                  .length
+                                  .toStringAsFixed(0),
                               title: 'Total Verified',
                             ),
                           ),
                           Expanded(
                             child: ContainerWidget(
                               isAllTime: false,
-                              number: 'N25',
+                              number: formatMoney(
+                                returnShopProvider(
+                                  context,
+                                ).getTotalRevenueMade(
+                                  context,
+                                ),
+                              ),
                               title: 'Total Revenue',
                             ),
                           ),
                         ],
                       ),
                       SizedBox(height: 30),
-                      // Divider(color: primary(context)),
-                      // SizedBox(height: 15),
                       Row(
                         children: [
                           Text(
@@ -300,14 +369,19 @@ class _DashboardRefState extends State<DashboardRef> {
                               color: primary(context),
                               fontWeight: FontWeight.bold,
                             ),
-                            'Current Week Records',
+                            'Current Week Record',
                           ),
                         ],
                       ),
                       SizedBox(height: 15),
                       ContainerWidget(
                         isAllTime: false,
-                        number: '25',
+                        number: returnShopProvider(context)
+                            .getCurrentWeekRegisteredShops(
+                              context,
+                            )
+                            .length
+                            .toStringAsFixed(0),
                         title: 'Total Registered',
                       ),
                       SizedBox(height: 15),
@@ -319,15 +393,29 @@ class _DashboardRefState extends State<DashboardRef> {
                           Expanded(
                             child: ContainerWidget(
                               isAllTime: false,
-                              number: '25',
-                              title: 'Total Verified',
+                              number: returnShopProvider(
+                                    context,
+                                  )
+                                  .getUnVerifiedShops(
+                                    context,
+                                  )
+                                  .length
+                                  .toStringAsFixed(0),
+                              title: 'Total Unverified',
                             ),
                           ),
                           Expanded(
                             child: ContainerWidget(
                               isAllTime: false,
-                              number: '25',
-                              title: 'Total Unverified',
+                              number: returnShopProvider(
+                                    context,
+                                  )
+                                  .getCurrentWeekVerifiedShops(
+                                    context,
+                                  )
+                                  .length
+                                  .toStringAsFixed(0),
+                              title: 'Total Verified',
                             ),
                           ),
                         ],
@@ -341,35 +429,59 @@ class _DashboardRefState extends State<DashboardRef> {
                           Expanded(
                             child: ContainerWidget(
                               isAllTime: false,
-                              number: '25',
+                              number: returnShopProvider(
+                                    context,
+                                  )
+                                  .getUnPaidShops(context)
+                                  .length
+                                  .toStringAsFixed(0),
                               title: 'Total Unpaid',
                             ),
                           ),
                           Expanded(
                             child: ContainerWidget(
                               isAllTime: false,
-                              number: '25',
+                              number: returnShopProvider(
+                                    context,
+                                  )
+                                  .getCurrentWeekPaidShops(
+                                    context,
+                                  )
+                                  .length
+                                  .toStringAsFixed(0),
                               title: 'Total Paid',
                             ),
                           ),
                         ],
                       ),
-                      // SizedBox(height: 20),
-                      // Divider(
-                      //   color: primaryFaint(context),
-                      // ),
                       SizedBox(height: 25),
                       ContainerWidget(
                         isAllTime: false,
                         isTotalRevenue: true,
-                        number: 'N25',
+                        number: formatMoney(
+                          returnShopProvider(
+                            context,
+                          ).getTotalRevenueCurrentWeek(
+                            context,
+                          ),
+                        ),
                         title: 'Total Revenue',
                       ),
-                      SizedBox(height: 15),
+                      SizedBox(height: 20),
                       MainButtonBlue(
-                        text: 'Logout',
+                        text: 'Refresh',
                         action: () async {
-                          await AuthService().logOut();
+                          await initFutures();
+                          if (context.mounted) {
+                            Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) {
+                                  return HomePage();
+                                },
+                              ),
+                            );
+                          }
                         },
                       ),
                     ],
