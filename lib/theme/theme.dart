@@ -14,8 +14,16 @@ Color secondary(BuildContext context) {
   return Theme.of(context).colorScheme.secondary;
 }
 
+Color secondaryFaint(BuildContext context) {
+  return const Color.fromARGB(85, 255, 166, 0);
+}
+
 Color primary(BuildContext context) {
   return Theme.of(context).colorScheme.primary;
+}
+
+Color primaryFaint(BuildContext context) {
+  return const Color.fromARGB(103, 25, 43, 117);
 }
 
 Color tertiary(BuildContext context) {

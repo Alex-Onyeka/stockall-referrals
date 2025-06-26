@@ -6,12 +6,6 @@ import 'package:stockallref/main.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 class ShopProvider with ChangeNotifier {
-  final supabase = Supabase.instance.client;
-
-  List<Shop> _refShops = [];
-
-  List<Shop> get refShops => _refShops;
-
   // List<Shop> _shops = [];
 
   // List<Shop> get shops => _shops;
@@ -40,18 +34,6 @@ class ShopProvider with ChangeNotifier {
   //   notifyListeners();
   // }
 
-  Future<void> fetchReferreeShops(String refCode) async {
-    final data = await supabase
-        .from('shops')
-        .select()
-        .eq('ref_code', refCode);
-    _refShops =
-        data
-            .map<Shop>((json) => Shop.fromJson(json))
-            .toList();
-    notifyListeners();
-  }
-
   /// Update shop
   // Future<void> updateShop(
   //   int shopId,
@@ -73,6 +55,24 @@ class ShopProvider with ChangeNotifier {
   //   _refShops.removeWhere((shop) => shop.shopId == shopId);
   //   notifyListeners();
   // }
+
+  final supabase = Supabase.instance.client;
+
+  List<Shop> _refShops = [];
+
+  List<Shop> get refShops => _refShops;
+
+  Future<void> fetchReferreeShops(String refCode) async {
+    final data = await supabase
+        .from('shops')
+        .select()
+        .eq('ref_code', refCode);
+    _refShops =
+        data
+            .map<Shop>((json) => Shop.fromJson(json))
+            .toList();
+    notifyListeners();
+  }
 
   /// Get shop by ID
   Shop? getShopById(int id) {
