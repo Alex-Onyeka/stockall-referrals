@@ -39,6 +39,7 @@ class AuthService {
       final user = res.user;
       await UserProvider().addReferree(
         Referree(
+          isAdmin: false,
           id: user!.id,
           createdDate: DateTime.now(),
           name: name,

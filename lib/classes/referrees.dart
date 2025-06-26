@@ -6,6 +6,7 @@ class Referree {
   final String phone;
   final String state;
   final String refCode;
+  final bool isAdmin;
 
   Referree({
     required this.id,
@@ -15,6 +16,7 @@ class Referree {
     required this.phone,
     required this.state,
     required this.refCode,
+    required this.isAdmin,
   });
 
   // 🔁 Factory method to create an instance from JSON
@@ -27,6 +29,7 @@ class Referree {
       phone: json['phone'],
       state: json['state'],
       refCode: json['ref_code'],
+      isAdmin: json['is_admin'],
     );
   }
 
