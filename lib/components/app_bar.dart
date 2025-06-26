@@ -5,11 +5,13 @@ class TopNavBar extends StatelessWidget {
   final String title;
   final Widget? widget;
   final double amount;
+  final int current;
   const TopNavBar({
     super.key,
     required this.title,
     this.widget,
     required this.amount,
+    required this.current,
   });
 
   @override
@@ -33,33 +35,38 @@ class TopNavBar extends StatelessWidget {
                 ? MainAxisAlignment.spaceBetween
                 : MainAxisAlignment.start,
         children: [
-          Row(
-            spacing: 5,
-            children: [
-              SizedBox(
-                height: 35,
-                child: CircleAvatar(
-                  child: Icon(size: 18, Icons.person),
+          Visibility(
+            visible: current != 2,
+            child: Row(
+              spacing: 5,
+              children: [
+                SizedBox(
+                  height: 35,
+                  child: CircleAvatar(
+                    child: Icon(size: 18, Icons.person),
+                  ),
                 ),
-              ),
-              Row(
-                children: [
-                  Text(
-                    style: TextStyle(fontSize: 12),
-                    'Hello, ',
-                  ),
-                  Text(
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      color: primary(context),
+                Row(
+                  children: [
+                    Text(
+                      style: TextStyle(fontSize: 12),
+                      'Hello, ',
                     ),
-                    title.split(' ').length > 1
-                        ? title.split(' ')[0].toUpperCase()
-                        : title.toUpperCase(),
-                  ),
-                ],
-              ),
-            ],
+                    Text(
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: primary(context),
+                      ),
+                      title.split(' ').length > 1
+                          ? title
+                              .split(' ')[0]
+                              .toUpperCase()
+                          : title.toUpperCase(),
+                    ),
+                  ],
+                ),
+              ],
+            ),
           ),
           widget ?? Container(),
         ],

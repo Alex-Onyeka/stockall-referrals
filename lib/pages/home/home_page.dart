@@ -3,6 +3,7 @@ import 'package:stockallref/components/app_bar.dart';
 import 'package:stockallref/components/bottom_nav.dart';
 import 'package:stockallref/main.dart';
 import 'package:stockallref/pages/home/dashoard.dart';
+import 'package:stockallref/pages/profile/profile_page.dart';
 import 'package:stockallref/pages/shops/shops_page.dart';
 import 'package:stockallref/supabase/auth_service.dart';
 import 'package:stockallref/theme/theme.dart';
@@ -62,6 +63,7 @@ class _HomePageState extends State<HomePage> {
                 body: Column(
                   children: [
                     TopNavBar(
+                      current: currentIndex,
                       amount: currentIndex == 1 ? 10 : 15,
                       title:
                           returnUserProvider(
@@ -86,6 +88,14 @@ class _HomePageState extends State<HomePage> {
                         horizontal: 20.0,
                       ),
                       child: BottomNav(
+                        logoutAction: () async {
+                          Navigator.of(context).pop();
+                          await AuthService().logOut();
+                          // if (context.mounted) {
+
+                          //   Navigator.of(context).pop();
+                          // }
+                        },
                         currentIndex: currentIndex,
                         action: () {
                           setState(() {
@@ -117,7 +127,8 @@ class _HomePageState extends State<HomePage> {
           body: Column(
             children: [
               TopNavBar(
-                amount: currentIndex == 1 ? 10 : 15,
+                current: currentIndex,
+                amount: currentIndex == 1 ? 15 : 15,
                 title:
                     returnUserProvider(
                       context,
@@ -163,7 +174,7 @@ class _HomePageState extends State<HomePage> {
                                               )
                                               : Colors
                                                   .grey
-                                                  .shade400,
+                                                  .shade500,
                                     ),
                                     'All Shops',
                                   ),
@@ -203,7 +214,7 @@ class _HomePageState extends State<HomePage> {
                                               )
                                               : Colors
                                                   .grey
-                                                  .shade400,
+                                                  .shade500,
                                     ),
                                     'Weeks Registered Shops',
                                   ),
@@ -243,9 +254,9 @@ class _HomePageState extends State<HomePage> {
                                               )
                                               : Colors
                                                   .grey
-                                                  .shade400,
+                                                  .shade500,
                                     ),
-                                    'Weeks Unverified Shops',
+                                    'All Unverified Shops',
                                   ),
                                 ),
                               ),
@@ -283,7 +294,7 @@ class _HomePageState extends State<HomePage> {
                                               )
                                               : Colors
                                                   .grey
-                                                  .shade400,
+                                                  .shade500,
                                     ),
                                     'Weeks Verified Shops',
                                   ),
@@ -323,9 +334,9 @@ class _HomePageState extends State<HomePage> {
                                               )
                                               : Colors
                                                   .grey
-                                                  .shade400,
+                                                  .shade500,
                                     ),
-                                    'Weeks Unpaid Shops',
+                                    'All Unpaid Shops',
                                   ),
                                 ),
                               ),
@@ -363,7 +374,7 @@ class _HomePageState extends State<HomePage> {
                                               )
                                               : Colors
                                                   .grey
-                                                  .shade400,
+                                                  .shade500,
                                     ),
                                     'Weeks Paid Shops',
                                   ),
@@ -371,6 +382,28 @@ class _HomePageState extends State<HomePage> {
                               ),
                             ];
                           },
+                          child: Row(
+                            mainAxisAlignment:
+                                MainAxisAlignment.center,
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(
+                                      horizontal: 10.0,
+                                      vertical: 5,
+                                    ),
+                                child: Text(
+                                  style: TextStyle(
+                                    fontSize: 14,
+                                    // fontWeight: FontWeight.bold,
+                                  ),
+                                  'Filter:',
+                                ),
+                              ),
+                              Icon(Icons.more_vert_rounded),
+                            ],
+                          ),
                         )
                         : null,
               ),
@@ -382,7 +415,7 @@ class _HomePageState extends State<HomePage> {
                     } else if (currentIndex == 1) {
                       return ShopsPage();
                     } else {
-                      return Scaffold();
+                      return ProfilePage();
                     }
                   },
                 ),
@@ -392,6 +425,10 @@ class _HomePageState extends State<HomePage> {
                   horizontal: 20.0,
                 ),
                 child: BottomNav(
+                  logoutAction: () async {
+                    Navigator.of(context).pop();
+                    await AuthService().logOut();
+                  },
                   currentIndex: currentIndex,
                   action: () {
                     setState(() {

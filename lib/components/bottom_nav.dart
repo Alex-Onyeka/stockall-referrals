@@ -6,6 +6,7 @@ class BottomNav extends StatelessWidget {
   final Function() action;
   final Function() action2;
   final Function() action3;
+  final Function() logoutAction;
 
   const BottomNav({
     super.key,
@@ -13,6 +14,7 @@ class BottomNav extends StatelessWidget {
     required this.action,
     required this.action2,
     required this.action3,
+    required this.logoutAction,
   });
 
   @override
@@ -45,7 +47,117 @@ class BottomNav extends StatelessWidget {
           ),
           BottomNavButton(
             mainIndex: 3,
-            action: () {},
+            action: () {
+              showDialog(
+                context: context,
+                builder: (context) {
+                  return AlertDialog(
+                    // contentPadding: EdgeInsets.all(0),
+                    shape: BeveledRectangleBorder(
+                      borderRadius: BorderRadius.circular(
+                        5,
+                      ),
+                    ),
+                    title: Text(
+                      style: TextStyle(
+                        fontSize: 16,
+                        color: primary(context),
+                        fontWeight: FontWeight.bold,
+                      ),
+                      'Proceed to Log Out?',
+                    ),
+                    content: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        // SizedBox(height: 10),
+                        Text(
+                          style: TextStyle(
+                            color: Colors.grey,
+                          ),
+                          'You are about to logout, are you sure you want to proceed?',
+                        ),
+                        SizedBox(height: 20),
+                        Row(
+                          spacing: 10,
+                          mainAxisAlignment:
+                              MainAxisAlignment.center,
+                          children: [
+                            Expanded(
+                              child: InkWell(
+                                borderRadius:
+                                    BorderRadius.circular(
+                                      5,
+                                    ),
+                                onTap: () {
+                                  Navigator.of(
+                                    context,
+                                  ).pop();
+                                },
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    borderRadius:
+                                        BorderRadius.circular(
+                                          5,
+                                        ),
+                                  ),
+                                  padding:
+                                      EdgeInsets.symmetric(
+                                        vertical: 10,
+                                      ),
+                                  child: Center(
+                                    child: Text(
+                                      style: TextStyle(
+                                        fontSize: 12,
+                                        fontWeight:
+                                            FontWeight.bold,
+                                      ),
+                                      'Cancel',
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                            Expanded(
+                              child: Ink(
+                                decoration: BoxDecoration(
+                                  color: primary(context),
+                                  borderRadius:
+                                      BorderRadius.circular(
+                                        5,
+                                      ),
+                                ),
+                                child: InkWell(
+                                  onTap: logoutAction,
+                                  child: Container(
+                                    padding:
+                                        EdgeInsets.symmetric(
+                                          vertical: 10,
+                                        ),
+                                    child: Center(
+                                      child: Text(
+                                        style: TextStyle(
+                                          fontSize: 12,
+                                          fontWeight:
+                                              FontWeight
+                                                  .bold,
+                                          color:
+                                              Colors.white,
+                                        ),
+                                        'Proceed',
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  );
+                },
+              );
+            },
             currentIndex: currentIndex,
             icon: Icons.logout,
             title: 'Logout',

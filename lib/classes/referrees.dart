@@ -7,6 +7,9 @@ class Referree {
   final String state;
   final String refCode;
   final bool isAdmin;
+  String? accountName;
+  String? accountNumber;
+  String? bankName;
 
   Referree({
     required this.id,
@@ -17,6 +20,9 @@ class Referree {
     required this.state,
     required this.refCode,
     required this.isAdmin,
+    this.accountName,
+    this.accountNumber,
+    this.bankName,
   });
 
   // 🔁 Factory method to create an instance from JSON
@@ -30,6 +36,9 @@ class Referree {
       state: json['state'],
       refCode: json['ref_code'],
       isAdmin: json['is_admin'],
+      accountName: json['account_name'] as String?,
+      accountNumber: json['account_number'] as String?,
+      bankName: json['bank_name'] as String?,
     );
   }
 
@@ -43,6 +52,9 @@ class Referree {
       'phone': phone,
       'state': state,
       'ref_code': refCode,
+      'account_name': accountName,
+      'account_number': accountNumber,
+      'bank_name': bankName,
     };
   }
 }

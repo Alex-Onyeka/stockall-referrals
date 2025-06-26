@@ -51,7 +51,6 @@ class _DashboardRefState extends State<DashboardRef> {
 
   @override
   Widget build(BuildContext context) {
-    // var shopProvider = returnShopProvider(context);
     if (returnShopProvider(context).refShops.isEmpty) {
       return FutureBuilder(
         future: shopsFuture,
@@ -68,221 +67,229 @@ class _DashboardRefState extends State<DashboardRef> {
               body: Center(child: Text('An Error Occured')),
             );
           } else {
-            return Expanded(
-              child: RefreshIndicator(
-                onRefresh: () {
-                  return initFutures();
-                },
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 15.0,
-                  ),
-                  child: ListView(
-                    children: [
-                      SizedBox(height: 10),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 10.0,
-                        ),
-                        child: Column(
-                          children: [
-                            Row(
-                              children: [
-                                Text(
-                                  style: TextStyle(
-                                    color: primary(context),
-                                    fontWeight:
-                                        FontWeight.bold,
-                                  ),
-                                  'All Time Record',
+            return RefreshIndicator(
+              onRefresh: () {
+                return initFutures();
+              },
+              child: Padding(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 15.0,
+                ),
+                child: ListView(
+                  children: [
+                    SizedBox(height: 10),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 10.0,
+                      ),
+                      child: Column(
+                        children: [
+                          Row(
+                            children: [
+                              Text(
+                                style: TextStyle(
+                                  color: primary(context),
+                                  fontWeight:
+                                      FontWeight.bold,
                                 ),
-                              ],
-                            ),
-                            SizedBox(height: 15),
-                            ContainerWidget(
-                              isAllTime: true,
-                              number: returnShopProvider(
-                                    context,
-                                  ).refShops.length
-                                  .toStringAsFixed(0),
-                              title:
-                                  'Total Shops Registered',
-                            ),
-                            SizedBox(height: 15),
-                            Row(
-                              mainAxisAlignment:
-                                  MainAxisAlignment
-                                      .spaceBetween,
-                              spacing: 10,
-                              children: [
-                                Expanded(
-                                  child: ContainerWidget(
-                                    isAllTime: false,
-                                    number: returnShopProvider(
-                                          context,
-                                        )
-                                        .getVerifiedShops(
-                                          context,
-                                        )
-                                        .length
-                                        .toStringAsFixed(0),
-                                    title: 'Total Verified',
-                                  ),
-                                ),
-                                Expanded(
-                                  child: ContainerWidget(
-                                    isAllTime: false,
-                                    number: formatMoney(
+                                'All Time Record',
+                              ),
+                            ],
+                          ),
+                          SizedBox(height: 15),
+                          ContainerWidget(
+                            isAllTime: true,
+                            number: returnShopProvider(
+                                  context,
+                                  listen: true,
+                                ).refShops.length
+                                .toStringAsFixed(0),
+                            title: 'Total Shops Registered',
+                          ),
+                          SizedBox(height: 15),
+                          Row(
+                            mainAxisAlignment:
+                                MainAxisAlignment
+                                    .spaceBetween,
+                            spacing: 10,
+                            children: [
+                              Expanded(
+                                child: ContainerWidget(
+                                  isAllTime: false,
+                                  number:
                                       returnShopProvider(
-                                        context,
-                                      ).getTotalRevenueMade(
-                                        context,
-                                      ),
-                                    ),
-                                    title: 'Total Revenue',
-                                  ),
-                                ),
-                              ],
-                            ),
-                            SizedBox(height: 30),
-                            Row(
-                              children: [
-                                Text(
-                                  style: TextStyle(
-                                    color: primary(context),
-                                    fontWeight:
-                                        FontWeight.bold,
-                                  ),
-                                  'Current Week Record',
-                                ),
-                              ],
-                            ),
-                            SizedBox(height: 15),
-                            ContainerWidget(
-                              isAllTime: false,
-                              number: returnShopProvider(
-                                    context,
-                                  )
-                                  .getCurrentWeekRegisteredShops(
-                                    context,
-                                  )
-                                  .length
-                                  .toStringAsFixed(0),
-                              title: 'Total Registered',
-                            ),
-                            SizedBox(height: 15),
-                            Row(
-                              mainAxisAlignment:
-                                  MainAxisAlignment
-                                      .spaceBetween,
-                              spacing: 10,
-                              children: [
-                                Expanded(
-                                  child: ContainerWidget(
-                                    isAllTime: false,
-                                    number: returnShopProvider(
-                                          context,
-                                        )
-                                        .getUnVerifiedShops(
-                                          context,
-                                        )
-                                        .length
-                                        .toStringAsFixed(0),
-                                    title:
-                                        'Total Unverified',
-                                  ),
-                                ),
-                                Expanded(
-                                  child: ContainerWidget(
-                                    isAllTime: false,
-                                    number: returnShopProvider(
-                                          context,
-                                        )
-                                        .getCurrentWeekVerifiedShops(
-                                          context,
-                                        )
-                                        .length
-                                        .toStringAsFixed(0),
-                                    title: 'Total Verified',
-                                  ),
-                                ),
-                              ],
-                            ),
-                            SizedBox(height: 15),
-                            Row(
-                              mainAxisAlignment:
-                                  MainAxisAlignment
-                                      .spaceBetween,
-                              spacing: 10,
-                              children: [
-                                Expanded(
-                                  child: ContainerWidget(
-                                    isAllTime: false,
-                                    number:
-                                        returnShopProvider(
-                                              context,
-                                            )
-                                            .getUnPaidShops(
-                                              context,
-                                            )
-                                            .length
-                                            .toStringAsFixed(
-                                              0,
-                                            ),
-                                    title: 'Total Unpaid',
-                                  ),
-                                ),
-                                Expanded(
-                                  child: ContainerWidget(
-                                    isAllTime: false,
-                                    number: returnShopProvider(
-                                          context,
-                                        )
-                                        .getCurrentWeekPaidShops(
-                                          context,
-                                        )
-                                        .length
-                                        .toStringAsFixed(0),
-                                    title: 'Total Paid',
-                                  ),
-                                ),
-                              ],
-                            ),
-                            SizedBox(height: 25),
-                            ContainerWidget(
-                              isAllTime: false,
-                              isTotalRevenue: true,
-                              number: formatMoney(
-                                returnShopProvider(
-                                  context,
-                                ).getTotalRevenueCurrentWeek(
-                                  context,
+                                            context,
+                                            listen: true,
+                                          )
+                                          .getVerifiedShops(
+                                            context,
+                                          )
+                                          .length
+                                          .toStringAsFixed(
+                                            0,
+                                          ),
+                                  title: 'Total Verified',
                                 ),
                               ),
-                              title: 'Total Revenue',
-                            ),
-                            SizedBox(height: 20),
-                            MainButtonBlue(
-                              text: 'Refresh',
-                              action: () async {
-                                await initFutures();
-                                if (context.mounted) {
-                                  Navigator.pushReplacement(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) {
-                                        return HomePage();
-                                      },
+                              Expanded(
+                                child: ContainerWidget(
+                                  isAllTime: false,
+                                  number: formatMoney(
+                                    returnShopProvider(
+                                      context,
+                                      listen: true,
+                                    ).getTotalRevenueMade(
+                                      context,
                                     ),
-                                  );
-                                }
-                              },
+                                  ),
+                                  title: 'Total Revenue',
+                                ),
+                              ),
+                            ],
+                          ),
+                          SizedBox(height: 30),
+                          Row(
+                            children: [
+                              Text(
+                                style: TextStyle(
+                                  color: primary(context),
+                                  fontWeight:
+                                      FontWeight.bold,
+                                ),
+                                'Current Week Record',
+                              ),
+                            ],
+                          ),
+                          SizedBox(height: 15),
+                          ContainerWidget(
+                            isAllTime: false,
+                            number: returnShopProvider(
+                                  context,
+                                  listen: true,
+                                )
+                                .getCurrentWeekRegisteredShops(
+                                  context,
+                                )
+                                .length
+                                .toStringAsFixed(0),
+                            title: 'Total Registered',
+                          ),
+                          SizedBox(height: 15),
+                          Row(
+                            mainAxisAlignment:
+                                MainAxisAlignment
+                                    .spaceBetween,
+                            spacing: 10,
+                            children: [
+                              Expanded(
+                                child: ContainerWidget(
+                                  isAllTime: false,
+                                  number: returnShopProvider(
+                                        context,
+                                        listen: true,
+                                      )
+                                      .getUnVerifiedShops(
+                                        context,
+                                      )
+                                      .length
+                                      .toStringAsFixed(0),
+                                  title: 'Total Unverified',
+                                ),
+                              ),
+                              Expanded(
+                                child: ContainerWidget(
+                                  isAllTime: false,
+                                  number: returnShopProvider(
+                                        context,
+                                        listen: true,
+                                      )
+                                      .getCurrentWeekVerifiedShops(
+                                        context,
+                                      )
+                                      .length
+                                      .toStringAsFixed(0),
+                                  title: 'Total Verified',
+                                ),
+                              ),
+                            ],
+                          ),
+                          SizedBox(height: 15),
+                          Row(
+                            mainAxisAlignment:
+                                MainAxisAlignment
+                                    .spaceBetween,
+                            spacing: 10,
+                            children: [
+                              Expanded(
+                                child: ContainerWidget(
+                                  isAllTime: false,
+                                  number:
+                                      returnShopProvider(
+                                            context,
+                                            listen: true,
+                                          )
+                                          .getUnPaidShops(
+                                            context,
+                                          )
+                                          .length
+                                          .toStringAsFixed(
+                                            0,
+                                          ),
+                                  title: 'Total Unpaid',
+                                ),
+                              ),
+                              Expanded(
+                                child: ContainerWidget(
+                                  isAllTime: false,
+                                  number: returnShopProvider(
+                                        context,
+                                        listen: true,
+                                      )
+                                      .getCurrentWeekPaidShops(
+                                        context,
+                                      )
+                                      .length
+                                      .toStringAsFixed(0),
+                                  title: 'Total Paid',
+                                ),
+                              ),
+                            ],
+                          ),
+                          SizedBox(height: 25),
+                          ContainerWidget(
+                            isAllTime: false,
+                            isTotalRevenue: true,
+                            number: formatMoney(
+                              returnShopProvider(
+                                context,
+                                listen: true,
+                              ).getTotalRevenueCurrentWeek(
+                                context,
+                              ),
                             ),
-                          ],
-                        ),
+                            title: 'Total Revenue',
+                          ),
+                          SizedBox(height: 20),
+                          MainButtonBlue(
+                            text: 'Refresh',
+                            action: () async {
+                              await initFutures();
+                              if (context.mounted) {
+                                Navigator.pushReplacement(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) {
+                                      return HomePage();
+                                    },
+                                  ),
+                                );
+                              }
+                            },
+                          ),
+                        ],
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
               ),
             );
@@ -290,205 +297,211 @@ class _DashboardRefState extends State<DashboardRef> {
         },
       );
     } else {
-      return Expanded(
-        child: RefreshIndicator(
-          onRefresh: () {
-            return initFutures();
-          },
-          child: Padding(
-            padding: const EdgeInsets.symmetric(
-              horizontal: 15.0,
-            ),
-            child: ListView(
-              children: [
-                SizedBox(height: 10),
-                Padding(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 10.0,
-                  ),
-                  child: Column(
-                    children: [
-                      Row(
-                        children: [
-                          Text(
-                            style: TextStyle(
-                              color: primary(context),
-                              fontWeight: FontWeight.bold,
-                            ),
-                            'All Time Record',
+      return RefreshIndicator(
+        onRefresh: () {
+          return initFutures();
+        },
+        child: Padding(
+          padding: const EdgeInsets.symmetric(
+            horizontal: 15.0,
+          ),
+          child: ListView(
+            children: [
+              SizedBox(height: 10),
+              Padding(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 10.0,
+                ),
+                child: Column(
+                  children: [
+                    Row(
+                      children: [
+                        Text(
+                          style: TextStyle(
+                            color: primary(context),
+                            fontWeight: FontWeight.bold,
                           ),
-                        ],
-                      ),
-                      SizedBox(height: 15),
-                      ContainerWidget(
-                        isAllTime: true,
-                        number: returnShopProvider(context)
-                            .refShops
-                            .length
-                            .toStringAsFixed(0),
-                        title: 'Total Shops Registered',
-                      ),
-                      SizedBox(height: 15),
-                      Row(
-                        mainAxisAlignment:
-                            MainAxisAlignment.spaceBetween,
-                        spacing: 10,
-                        children: [
-                          Expanded(
-                            child: ContainerWidget(
-                              isAllTime: false,
-                              number: returnShopProvider(
-                                    context,
-                                  )
-                                  .getVerifiedShops(context)
-                                  .length
-                                  .toStringAsFixed(0),
-                              title: 'Total Verified',
-                            ),
-                          ),
-                          Expanded(
-                            child: ContainerWidget(
-                              isAllTime: false,
-                              number: formatMoney(
-                                returnShopProvider(
+                          'All Time Record',
+                        ),
+                      ],
+                    ),
+                    SizedBox(height: 15),
+                    ContainerWidget(
+                      isAllTime: true,
+                      number: returnShopProvider(
+                        context,
+                        listen: true,
+                      ).refShops.length.toStringAsFixed(0),
+                      title: 'Total Shops Registered',
+                    ),
+                    SizedBox(height: 15),
+                    Row(
+                      mainAxisAlignment:
+                          MainAxisAlignment.spaceBetween,
+                      spacing: 10,
+                      children: [
+                        Expanded(
+                          child: ContainerWidget(
+                            isAllTime: false,
+                            number: returnShopProvider(
                                   context,
-                                ).getTotalRevenueMade(
-                                  context,
-                                ),
-                              ),
-                              title: 'Total Revenue',
-                            ),
-                          ),
-                        ],
-                      ),
-                      SizedBox(height: 30),
-                      Row(
-                        children: [
-                          Text(
-                            style: TextStyle(
-                              color: primary(context),
-                              fontWeight: FontWeight.bold,
-                            ),
-                            'Current Week Record',
-                          ),
-                        ],
-                      ),
-                      SizedBox(height: 15),
-                      ContainerWidget(
-                        isAllTime: false,
-                        number: returnShopProvider(context)
-                            .getCurrentWeekRegisteredShops(
-                              context,
-                            )
-                            .length
-                            .toStringAsFixed(0),
-                        title: 'Total Registered',
-                      ),
-                      SizedBox(height: 15),
-                      Row(
-                        mainAxisAlignment:
-                            MainAxisAlignment.spaceBetween,
-                        spacing: 10,
-                        children: [
-                          Expanded(
-                            child: ContainerWidget(
-                              isAllTime: false,
-                              number: returnShopProvider(
-                                    context,
-                                  )
-                                  .getUnVerifiedShops(
-                                    context,
-                                  )
-                                  .length
-                                  .toStringAsFixed(0),
-                              title: 'Total Unverified',
-                            ),
-                          ),
-                          Expanded(
-                            child: ContainerWidget(
-                              isAllTime: false,
-                              number: returnShopProvider(
-                                    context,
-                                  )
-                                  .getCurrentWeekVerifiedShops(
-                                    context,
-                                  )
-                                  .length
-                                  .toStringAsFixed(0),
-                              title: 'Total Verified',
-                            ),
-                          ),
-                        ],
-                      ),
-                      SizedBox(height: 15),
-                      Row(
-                        mainAxisAlignment:
-                            MainAxisAlignment.spaceBetween,
-                        spacing: 10,
-                        children: [
-                          Expanded(
-                            child: ContainerWidget(
-                              isAllTime: false,
-                              number: returnShopProvider(
-                                    context,
-                                  )
-                                  .getUnPaidShops(context)
-                                  .length
-                                  .toStringAsFixed(0),
-                              title: 'Total Unpaid',
-                            ),
-                          ),
-                          Expanded(
-                            child: ContainerWidget(
-                              isAllTime: false,
-                              number: returnShopProvider(
-                                    context,
-                                  )
-                                  .getCurrentWeekPaidShops(
-                                    context,
-                                  )
-                                  .length
-                                  .toStringAsFixed(0),
-                              title: 'Total Paid',
-                            ),
-                          ),
-                        ],
-                      ),
-                      SizedBox(height: 25),
-                      ContainerWidget(
-                        isAllTime: false,
-                        isTotalRevenue: true,
-                        number: formatMoney(
-                          returnShopProvider(
-                            context,
-                          ).getTotalRevenueCurrentWeek(
-                            context,
+                                  listen: true,
+                                )
+                                .getVerifiedShops(context)
+                                .length
+                                .toStringAsFixed(0),
+                            title: 'Total Verified',
                           ),
                         ),
-                        title: 'Total Revenue',
-                      ),
-                      SizedBox(height: 20),
-                      MainButtonBlue(
-                        text: 'Refresh',
-                        action: () async {
-                          await initFutures();
-                          if (context.mounted) {
-                            Navigator.pushReplacement(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) {
-                                  return HomePage();
-                                },
+                        Expanded(
+                          child: ContainerWidget(
+                            isAllTime: false,
+                            number: formatMoney(
+                              returnShopProvider(
+                                context,
+                                listen: true,
+                              ).getTotalRevenueMade(
+                                context,
                               ),
-                            );
-                          }
-                        },
+                            ),
+                            title: 'Total Revenue',
+                          ),
+                        ),
+                      ],
+                    ),
+                    SizedBox(height: 30),
+                    Row(
+                      children: [
+                        Text(
+                          style: TextStyle(
+                            color: primary(context),
+                            fontWeight: FontWeight.bold,
+                          ),
+                          'Current Week Record',
+                        ),
+                      ],
+                    ),
+                    SizedBox(height: 15),
+                    ContainerWidget(
+                      isAllTime: false,
+                      number: returnShopProvider(
+                            context,
+                            listen: true,
+                          )
+                          .getCurrentWeekRegisteredShops(
+                            context,
+                          )
+                          .length
+                          .toStringAsFixed(0),
+                      title: 'Total Registered',
+                    ),
+                    SizedBox(height: 15),
+                    Row(
+                      mainAxisAlignment:
+                          MainAxisAlignment.spaceBetween,
+                      spacing: 10,
+                      children: [
+                        Expanded(
+                          child: ContainerWidget(
+                            isAllTime: false,
+                            number: returnShopProvider(
+                                  context,
+                                  listen: true,
+                                )
+                                .getUnVerifiedShops(context)
+                                .length
+                                .toStringAsFixed(0),
+                            title: 'Total Unverified',
+                          ),
+                        ),
+                        Expanded(
+                          child: ContainerWidget(
+                            isAllTime: false,
+                            number: returnShopProvider(
+                                  context,
+                                  listen: true,
+                                )
+                                .getCurrentWeekVerifiedShops(
+                                  context,
+                                )
+                                .length
+                                .toStringAsFixed(0),
+                            title: 'Total Verified',
+                          ),
+                        ),
+                      ],
+                    ),
+                    SizedBox(height: 15),
+                    Row(
+                      mainAxisAlignment:
+                          MainAxisAlignment.spaceBetween,
+                      spacing: 10,
+                      children: [
+                        Expanded(
+                          child: ContainerWidget(
+                            isAllTime: false,
+                            number: returnShopProvider(
+                                  context,
+                                  listen: true,
+                                )
+                                .getUnPaidShops(context)
+                                .length
+                                .toStringAsFixed(0),
+                            title: 'Total Unpaid',
+                          ),
+                        ),
+                        Expanded(
+                          child: ContainerWidget(
+                            isAllTime: false,
+                            number: returnShopProvider(
+                                  context,
+                                  listen: true,
+                                )
+                                .getCurrentWeekPaidShops(
+                                  context,
+                                )
+                                .length
+                                .toStringAsFixed(0),
+                            title: 'Total Paid',
+                          ),
+                        ),
+                      ],
+                    ),
+                    SizedBox(height: 25),
+                    ContainerWidget(
+                      isAllTime: false,
+                      isTotalRevenue: true,
+                      number: formatMoney(
+                        returnShopProvider(
+                          context,
+                          listen: true,
+                        ).getTotalRevenueCurrentWeek(
+                          context,
+                        ),
                       ),
-                    ],
-                  ),
+                      title: 'Total Revenue',
+                    ),
+                    SizedBox(height: 20),
+                    MainButtonBlue(
+                      text: 'Refresh',
+                      action: () async {
+                        await initFutures();
+                        if (context.mounted) {
+                          Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) {
+                                return HomePage();
+                              },
+                            ),
+                          );
+                        }
+                      },
+                    ),
+                  ],
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
       );
