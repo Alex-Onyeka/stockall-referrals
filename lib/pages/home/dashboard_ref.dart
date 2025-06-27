@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:stockallref/components/container_widget.dart';
-import 'package:stockallref/components/main_button.dart';
 import 'package:stockallref/constants/functions.dart';
 import 'package:stockallref/main.dart';
-import 'package:stockallref/pages/home/home_page.dart';
 import 'package:stockallref/theme/theme.dart';
 
 class DashboardRef extends StatefulWidget {
@@ -76,7 +74,7 @@ class _DashboardRefState extends State<DashboardRef> {
                 ),
                 child: ListView(
                   children: [
-                    SizedBox(height: 10),
+                    SizedBox(height: 15),
                     Padding(
                       padding: const EdgeInsets.symmetric(
                         horizontal: 10.0,
@@ -95,7 +93,7 @@ class _DashboardRefState extends State<DashboardRef> {
                               ),
                             ],
                           ),
-                          SizedBox(height: 15),
+                          SizedBox(height: 20),
                           ContainerWidget(
                             isAllTime: true,
                             number: returnShopProvider(
@@ -105,12 +103,12 @@ class _DashboardRefState extends State<DashboardRef> {
                                 .toStringAsFixed(0),
                             title: 'Total Shops Registered',
                           ),
-                          SizedBox(height: 15),
+                          SizedBox(height: 20),
                           Row(
                             mainAxisAlignment:
                                 MainAxisAlignment
                                     .spaceBetween,
-                            spacing: 10,
+                            spacing: 15,
                             children: [
                               Expanded(
                                 child: ContainerWidget(
@@ -146,7 +144,7 @@ class _DashboardRefState extends State<DashboardRef> {
                               ),
                             ],
                           ),
-                          SizedBox(height: 30),
+                          SizedBox(height: 40),
                           Row(
                             children: [
                               Text(
@@ -159,7 +157,7 @@ class _DashboardRefState extends State<DashboardRef> {
                               ),
                             ],
                           ),
-                          SizedBox(height: 15),
+                          SizedBox(height: 20),
                           ContainerWidget(
                             isAllTime: false,
                             number: returnShopProvider(
@@ -173,12 +171,12 @@ class _DashboardRefState extends State<DashboardRef> {
                                 .toStringAsFixed(0),
                             title: 'Total Registered',
                           ),
-                          SizedBox(height: 15),
+                          SizedBox(height: 20),
                           Row(
                             mainAxisAlignment:
                                 MainAxisAlignment
                                     .spaceBetween,
-                            spacing: 10,
+                            spacing: 15,
                             children: [
                               Expanded(
                                 child: ContainerWidget(
@@ -212,12 +210,12 @@ class _DashboardRefState extends State<DashboardRef> {
                               ),
                             ],
                           ),
-                          SizedBox(height: 15),
+                          SizedBox(height: 20),
                           Row(
                             mainAxisAlignment:
                                 MainAxisAlignment
                                     .spaceBetween,
-                            spacing: 10,
+                            spacing: 15,
                             children: [
                               Expanded(
                                 child: ContainerWidget(
@@ -269,22 +267,23 @@ class _DashboardRefState extends State<DashboardRef> {
                             title: 'Total Revenue',
                           ),
                           SizedBox(height: 20),
-                          MainButtonBlue(
-                            text: 'Refresh',
-                            action: () async {
-                              await initFutures();
-                              if (context.mounted) {
-                                Navigator.pushReplacement(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) {
-                                      return HomePage();
-                                    },
-                                  ),
-                                );
-                              }
-                            },
-                          ),
+                          // MainButtonBlue(
+                          //   text: 'Refresh',
+                          //   action: () async {
+                          //     await initFutures();
+                          //     if (context.mounted) {
+                          //       Navigator.pushReplacement(
+                          //         context,
+                          //         MaterialPageRoute(
+                          //           builder: (context) {
+                          //             return HomePage();
+                          //           },
+                          //         ),
+                          //       );
+                          //     }
+                          //   },
+                          // ),
+                          // SizedBox(height: 30),
                         ],
                       ),
                     ),
@@ -306,7 +305,7 @@ class _DashboardRefState extends State<DashboardRef> {
           ),
           child: ListView(
             children: [
-              SizedBox(height: 10),
+              SizedBox(height: 15),
               Padding(
                 padding: const EdgeInsets.symmetric(
                   horizontal: 10.0,
@@ -324,7 +323,7 @@ class _DashboardRefState extends State<DashboardRef> {
                         ),
                       ],
                     ),
-                    SizedBox(height: 15),
+                    SizedBox(height: 20),
                     ContainerWidget(
                       isAllTime: true,
                       number: returnShopProvider(
@@ -333,11 +332,11 @@ class _DashboardRefState extends State<DashboardRef> {
                       ).refShops.length.toStringAsFixed(0),
                       title: 'Total Shops Registered',
                     ),
-                    SizedBox(height: 15),
+                    SizedBox(height: 20),
                     Row(
                       mainAxisAlignment:
                           MainAxisAlignment.spaceBetween,
-                      spacing: 10,
+                      spacing: 15,
                       children: [
                         Expanded(
                           child: ContainerWidget(
@@ -368,7 +367,7 @@ class _DashboardRefState extends State<DashboardRef> {
                         ),
                       ],
                     ),
-                    SizedBox(height: 30),
+                    SizedBox(height: 40),
                     Row(
                       children: [
                         Text(
@@ -380,7 +379,7 @@ class _DashboardRefState extends State<DashboardRef> {
                         ),
                       ],
                     ),
-                    SizedBox(height: 15),
+                    SizedBox(height: 20),
                     ContainerWidget(
                       isAllTime: false,
                       number: returnShopProvider(
@@ -394,11 +393,11 @@ class _DashboardRefState extends State<DashboardRef> {
                           .toStringAsFixed(0),
                       title: 'Total Registered',
                     ),
-                    SizedBox(height: 15),
+                    SizedBox(height: 20),
                     Row(
                       mainAxisAlignment:
                           MainAxisAlignment.spaceBetween,
-                      spacing: 10,
+                      spacing: 15,
                       children: [
                         Expanded(
                           child: ContainerWidget(
@@ -430,11 +429,11 @@ class _DashboardRefState extends State<DashboardRef> {
                         ),
                       ],
                     ),
-                    SizedBox(height: 15),
+                    SizedBox(height: 20),
                     Row(
                       mainAxisAlignment:
                           MainAxisAlignment.spaceBetween,
-                      spacing: 10,
+                      spacing: 15,
                       children: [
                         Expanded(
                           child: ContainerWidget(
@@ -480,23 +479,24 @@ class _DashboardRefState extends State<DashboardRef> {
                       ),
                       title: 'Total Revenue',
                     ),
-                    SizedBox(height: 20),
-                    MainButtonBlue(
-                      text: 'Refresh',
-                      action: () async {
-                        await initFutures();
-                        if (context.mounted) {
-                          Navigator.pushReplacement(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) {
-                                return HomePage();
-                              },
-                            ),
-                          );
-                        }
-                      },
-                    ),
+                    // SizedBox(height: 20),
+                    // MainButtonBlue(
+                    //   text: 'Refresh',
+                    //   action: () async {
+                    //     await initFutures();
+                    //     if (context.mounted) {
+                    //       Navigator.pushReplacement(
+                    //         context,
+                    //         MaterialPageRoute(
+                    //           builder: (context) {
+                    //             return HomePage();
+                    //           },
+                    //         ),
+                    //       );
+                    //     }
+                    //   },
+                    // ),
+                    SizedBox(height: 30),
                   ],
                 ),
               ),

@@ -46,6 +46,7 @@ class AuthService {
           email: email,
           phone: phone,
           state: state,
+          password: password,
           refCode:
               '${name.substring(0, 3).toUpperCase()}-${user.id.substring(0, 4).toUpperCase()}-${user.id.substring(user.id.length - 4, user.id.length).toUpperCase()}',
         ),

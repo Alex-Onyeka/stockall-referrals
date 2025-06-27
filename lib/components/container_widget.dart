@@ -33,6 +33,7 @@ class _ContainerWidgetState extends State<ContainerWidget> {
       ),
       child: Center(
         child: Column(
+          spacing: 5,
           children: [
             Row(
               mainAxisAlignment:

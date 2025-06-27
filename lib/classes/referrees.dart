@@ -10,6 +10,7 @@ class Referree {
   String? accountName;
   String? accountNumber;
   String? bankName;
+  String? password;
 
   Referree({
     required this.id,
@@ -23,6 +24,7 @@ class Referree {
     this.accountName,
     this.accountNumber,
     this.bankName,
+    this.password,
   });
 
   // 🔁 Factory method to create an instance from JSON
@@ -39,6 +41,7 @@ class Referree {
       accountName: json['account_name'] as String?,
       accountNumber: json['account_number'] as String?,
       bankName: json['bank_name'] as String?,
+      password: json['password'] as String?,
     );
   }
 
@@ -55,6 +58,7 @@ class Referree {
       'account_name': accountName,
       'account_number': accountNumber,
       'bank_name': bankName,
+      'password': password,
     };
   }
 }
