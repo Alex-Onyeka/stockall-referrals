@@ -11,11 +11,11 @@ class ProfilePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var user =
-        returnUserProvider(
-          context,
-          listen: true,
-        ).currentReferree!;
+    // var user =
+    //     returnUserProvider(
+    //       context,
+    //       listen: true,
+    //     ).currentReferree!;
     return PopScope(
       canPop: false,
       onPopInvokedWithResult: (didPop, result) {
@@ -69,11 +69,18 @@ class ProfilePage extends StatelessWidget {
                               fontWeight: FontWeight.bold,
                               fontSize: 16,
                             ),
-                            user.name,
+                            returnUserProvider(
+                              context,
+                              listen: true,
+                            ).currentReferree!.name,
                           ),
                           NewWidget(
-                            title: 'Title',
-                            text: user.email,
+                            title: 'Email',
+                            text:
+                                returnUserProvider(
+                                  context,
+                                  listen: true,
+                                ).currentReferree!.email,
                           ),
                           Row(
                             spacing: 10,
@@ -83,7 +90,13 @@ class ProfilePage extends StatelessWidget {
                               Expanded(
                                 child: NewWidget(
                                   title: 'Phone Number',
-                                  text: user.phone,
+                                  text:
+                                      returnUserProvider(
+                                            context,
+                                            listen: true,
+                                          )
+                                          .currentReferree!
+                                          .phone,
                                 ),
                               ),
                               Expanded(
@@ -91,7 +104,14 @@ class ProfilePage extends StatelessWidget {
                                   action: () async {
                                     await Clipboard.setData(
                                       ClipboardData(
-                                        text: user.refCode,
+                                        text:
+                                            returnUserProvider(
+                                                  context,
+                                                  listen:
+                                                      true,
+                                                )
+                                                .currentReferree!
+                                                .refCode,
                                       ),
                                     );
                                     if (context.mounted) {
@@ -100,7 +120,7 @@ class ProfilePage extends StatelessWidget {
                                       ).showSnackBar(
                                         SnackBar(
                                           content: Text(
-                                            'Referral Code Copied to clipboard (${user.refCode})',
+                                            'Referral Code Copied to clipboard (${returnUserProvider(context, listen: true).currentReferree!.refCode})',
                                           ),
                                         ),
                                       );
@@ -108,7 +128,13 @@ class ProfilePage extends StatelessWidget {
                                   },
                                   isRef: true,
                                   title: 'Referral Code',
-                                  text: user.refCode,
+                                  text:
+                                      returnUserProvider(
+                                            context,
+                                            listen: true,
+                                          )
+                                          .currentReferree!
+                                          .refCode,
                                 ),
                               ),
                             ],
@@ -122,7 +148,12 @@ class ProfilePage extends StatelessWidget {
                                 child: NewWidget(
                                   title: 'Bank Name',
                                   text:
-                                      user.bankName ??
+                                      returnUserProvider(
+                                            context,
+                                            listen: true,
+                                          )
+                                          .currentReferree!
+                                          .bankName ??
                                       'Not Set',
                                 ),
                               ),
@@ -131,7 +162,12 @@ class ProfilePage extends StatelessWidget {
                                 child: NewWidget(
                                   title: 'Account Number',
                                   text:
-                                      user.accountNumber ??
+                                      returnUserProvider(
+                                            context,
+                                            listen: true,
+                                          )
+                                          .currentReferree!
+                                          .accountNumber ??
                                       'Not Set',
                                 ),
                               ),
@@ -145,14 +181,25 @@ class ProfilePage extends StatelessWidget {
                               Expanded(
                                 child: NewWidget(
                                   title: 'State',
-                                  text: user.state,
+                                  text:
+                                      returnUserProvider(
+                                            context,
+                                            listen: true,
+                                          )
+                                          .currentReferree!
+                                          .state,
                                 ),
                               ),
                               Expanded(
                                 child: NewWidget(
                                   title: 'Account Name',
                                   text:
-                                      user.accountName ??
+                                      returnUserProvider(
+                                            context,
+                                            listen: true,
+                                          )
+                                          .currentReferree!
+                                          .accountName ??
                                       'Not Set',
                                 ),
                               ),
