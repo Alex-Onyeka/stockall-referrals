@@ -96,7 +96,7 @@ class _HomePageState extends State<HomePage> {
                               1) {
                             return ShopsPage();
                           } else {
-                            return Scaffold();
+                            return ProfilePage();
                           }
                         },
                       ),
