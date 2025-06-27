@@ -11,226 +11,170 @@ class ProfilePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // var user =
-    //     returnUserProvider(
-    //       context,
-    //       listen: true,
-    //     ).currentReferree!;
-    return PopScope(
-      canPop: false,
-      onPopInvokedWithResult: (didPop, result) {
+    var user =
         returnUserProvider(
           context,
-          listen: false,
-        ).navigate(0);
-      },
-      child: Scaffold(
-        body: Padding(
-          padding: const EdgeInsets.symmetric(
-            horizontal: 20.0,
-          ),
-          child: Center(
-            child: RefreshIndicator(
-              onRefresh: () {
-                return returnUserProvider(
-                  context,
-                  listen: false,
-                ).getCurrentReferree();
-              },
-              backgroundColor: Colors.white,
-              color: primary(context),
-              displacement: 10,
-              child: ListView(
-                children: [
-                  Column(
-                    children: [
-                      SizedBox(height: 10),
-                      Container(
-                        padding: const EdgeInsets.all(20),
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: Colors.grey.shade100,
-                        ),
-                        child: Center(
-                          child: Icon(
-                            size: 50,
-                            color: primaryFaint(context),
-                            Icons.person,
-                          ),
+          listen: true,
+        ).currentReferree!;
+    return Scaffold(
+      body: Padding(
+        padding: const EdgeInsets.symmetric(
+          horizontal: 20.0,
+        ),
+        child: Center(
+          child: RefreshIndicator(
+            onRefresh: () {
+              return returnUserProvider(
+                context,
+                listen: false,
+              ).getCurrentReferree();
+            },
+            backgroundColor: Colors.white,
+            color: primary(context),
+            displacement: 10,
+            child: ListView(
+              children: [
+                Column(
+                  children: [
+                    SizedBox(height: 10),
+                    Container(
+                      padding: const EdgeInsets.all(20),
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: Colors.grey.shade100,
+                      ),
+                      child: Center(
+                        child: Icon(
+                          size: 50,
+                          color: primaryFaint(context),
+                          Icons.person,
                         ),
                       ),
-                      SizedBox(height: 15),
-                      Column(
-                        spacing: 10,
-                        children: [
-                          Text(
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 16,
-                            ),
-                            returnUserProvider(
-                              context,
-                              listen: true,
-                            ).currentReferree!.name,
+                    ),
+                    SizedBox(height: 15),
+                    Column(
+                      spacing: 10,
+                      children: [
+                        Text(
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 16,
                           ),
-                          NewWidget(
-                            title: 'Email',
-                            text:
-                                returnUserProvider(
-                                  context,
-                                  listen: true,
-                                ).currentReferree!.email,
-                          ),
-                          Row(
-                            spacing: 10,
-                            mainAxisAlignment:
-                                MainAxisAlignment.center,
-                            children: [
-                              Expanded(
-                                child: NewWidget(
-                                  title: 'Phone Number',
-                                  text:
-                                      returnUserProvider(
-                                            context,
-                                            listen: true,
-                                          )
-                                          .currentReferree!
-                                          .phone,
-                                ),
+                          user.name,
+                        ),
+                        NewWidget(
+                          title: 'Title',
+                          text: user.email,
+                        ),
+                        Row(
+                          spacing: 10,
+                          mainAxisAlignment:
+                              MainAxisAlignment.center,
+                          children: [
+                            Expanded(
+                              child: NewWidget(
+                                title: 'Phone Number',
+                                text: user.phone,
                               ),
-                              Expanded(
-                                child: NewWidget(
-                                  action: () async {
-                                    await Clipboard.setData(
-                                      ClipboardData(
-                                        text:
-                                            returnUserProvider(
-                                                  context,
-                                                  listen:
-                                                      true,
-                                                )
-                                                .currentReferree!
-                                                .refCode,
+                            ),
+                            Expanded(
+                              child: NewWidget(
+                                action: () async {
+                                  await Clipboard.setData(
+                                    ClipboardData(
+                                      text: user.refCode,
+                                    ),
+                                  );
+                                  if (context.mounted) {
+                                    ScaffoldMessenger.of(
+                                      context,
+                                    ).showSnackBar(
+                                      SnackBar(
+                                        content: Text(
+                                          'Referral Code Copied to clipboard (${user.refCode})',
+                                        ),
                                       ),
                                     );
-                                    if (context.mounted) {
-                                      ScaffoldMessenger.of(
-                                        context,
-                                      ).showSnackBar(
-                                        SnackBar(
-                                          content: Text(
-                                            'Referral Code Copied to clipboard (${returnUserProvider(context, listen: true).currentReferree!.refCode})',
-                                          ),
-                                        ),
-                                      );
-                                    }
-                                  },
-                                  isRef: true,
-                                  title: 'Referral Code',
-                                  text:
-                                      returnUserProvider(
-                                            context,
-                                            listen: true,
-                                          )
-                                          .currentReferree!
-                                          .refCode,
-                                ),
-                              ),
-                            ],
-                          ),
-                          Row(
-                            spacing: 10,
-                            mainAxisAlignment:
-                                MainAxisAlignment.center,
-                            children: [
-                              Expanded(
-                                child: NewWidget(
-                                  title: 'Bank Name',
-                                  text:
-                                      returnUserProvider(
-                                            context,
-                                            listen: true,
-                                          )
-                                          .currentReferree!
-                                          .bankName ??
-                                      'Not Set',
-                                ),
-                              ),
-
-                              Expanded(
-                                child: NewWidget(
-                                  title: 'Account Number',
-                                  text:
-                                      returnUserProvider(
-                                            context,
-                                            listen: true,
-                                          )
-                                          .currentReferree!
-                                          .accountNumber ??
-                                      'Not Set',
-                                ),
-                              ),
-                            ],
-                          ),
-                          Row(
-                            mainAxisAlignment:
-                                MainAxisAlignment.center,
-                            spacing: 10,
-                            children: [
-                              Expanded(
-                                child: NewWidget(
-                                  title: 'State',
-                                  text:
-                                      returnUserProvider(
-                                            context,
-                                            listen: true,
-                                          )
-                                          .currentReferree!
-                                          .state,
-                                ),
-                              ),
-                              Expanded(
-                                child: NewWidget(
-                                  title: 'Account Name',
-                                  text:
-                                      returnUserProvider(
-                                            context,
-                                            listen: true,
-                                          )
-                                          .currentReferree!
-                                          .accountName ??
-                                      'Not Set',
-                                ),
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                      SizedBox(height: 20),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 20.0,
-                        ),
-                        child: MainButtonBlue(
-                          text: 'Edit Account',
-                          action: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) {
-                                  return EditAccount();
+                                  }
                                 },
+                                isRef: true,
+                                title: 'Referral Code',
+                                text: user.refCode,
                               ),
-                            );
-                          },
+                            ),
+                          ],
                         ),
+                        Row(
+                          spacing: 10,
+                          mainAxisAlignment:
+                              MainAxisAlignment.center,
+                          children: [
+                            Expanded(
+                              child: NewWidget(
+                                title: 'Bank Name',
+                                text:
+                                    user.bankName ??
+                                    'Not Set',
+                              ),
+                            ),
+
+                            Expanded(
+                              child: NewWidget(
+                                title: 'Account Number',
+                                text:
+                                    user.accountNumber ??
+                                    'Not Set',
+                              ),
+                            ),
+                          ],
+                        ),
+                        Row(
+                          mainAxisAlignment:
+                              MainAxisAlignment.center,
+                          spacing: 10,
+                          children: [
+                            Expanded(
+                              child: NewWidget(
+                                title: 'State',
+                                text: user.state,
+                              ),
+                            ),
+                            Expanded(
+                              child: NewWidget(
+                                title: 'Account Name',
+                                text:
+                                    user.accountName ??
+                                    'Not Set',
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                    SizedBox(height: 20),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 20.0,
                       ),
-                      SizedBox(height: 30),
-                    ],
-                  ),
-                ],
-              ),
+                      child: MainButtonBlue(
+                        text: 'Edit Account',
+                        action: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) {
+                                return EditAccount();
+                              },
+                            ),
+                          );
+                        },
+                      ),
+                    ),
+                    SizedBox(height: 30),
+                  ],
+                ),
+              ],
             ),
           ),
         ),
