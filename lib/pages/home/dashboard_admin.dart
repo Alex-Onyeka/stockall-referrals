@@ -18,7 +18,7 @@ class DashboardAdminState extends State<DashboardAdmin> {
     await returnUserProvider(
       context,
       listen: false,
-    ).getReferreeById(AuthService().currentUser!.id);
+    ).getCurrentReferree();
   }
 
   Future<void> fetchShops() async {

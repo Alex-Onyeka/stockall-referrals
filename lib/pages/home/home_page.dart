@@ -20,7 +20,7 @@ class _HomePageState extends State<HomePage> {
     await returnUserProvider(
       context,
       listen: false,
-    ).getReferreeById(AuthService().currentUser!.id);
+    ).getCurrentReferree();
   }
 
   late Future<void> userFuture;
@@ -64,7 +64,7 @@ class _HomePageState extends State<HomePage> {
                   children: [
                     TopNavBar(
                       current: currentIndex,
-                      amount: currentIndex == 1 ? 10 : 15,
+                      amount: currentIndex == 1 ? 15 : 15,
                       title:
                           returnUserProvider(
                             context,
@@ -434,6 +434,10 @@ class _HomePageState extends State<HomePage> {
                     setState(() {
                       currentIndex = 0;
                     });
+                    returnShopProvider(
+                      context,
+                      listen: false,
+                    ).filterAction(0);
                   },
                   action2: () {
                     setState(() {
@@ -444,6 +448,10 @@ class _HomePageState extends State<HomePage> {
                     setState(() {
                       currentIndex = 2;
                     });
+                    returnShopProvider(
+                      context,
+                      listen: false,
+                    ).filterAction(0);
                   },
                 ),
               ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:stockallref/classes/referrees.dart';
+import 'package:stockallref/supabase/auth_service.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 class UserProvider with ChangeNotifier {
@@ -36,14 +37,11 @@ class UserProvider with ChangeNotifier {
   }
 
   /// Update referree
-  Future<void> updateReferree(
-    String id,
-    Map<String, dynamic> updates,
-  ) async {
+  Future<void> updateReferree(Referree update) async {
     await supabase
         .from('referrees')
-        .update(updates)
-        .eq('id', id);
+        .update(update.toJson())
+        .eq('id', update.id);
     await fetchReferree();
   }
 
@@ -56,13 +54,13 @@ class UserProvider with ChangeNotifier {
 
   /// Optional: Get referree by ID
   Referree? currentReferree;
-  Future<void> getReferreeById(String id) async {
+  Future<void> getCurrentReferree() async {
     try {
       final res =
           await supabase
               .from('referrees')
               .select()
-              .eq('id', id)
+              .eq('id', AuthService().currentUser!.id)
               .single();
 
       currentReferree = Referree.fromJson(res);
@@ -72,4 +70,21 @@ class UserProvider with ChangeNotifier {
       currentReferree = null;
     }
   }
+
+  // Future<void> getReferreeById(String id) async {
+  //   try {
+  //     final res =
+  //         await supabase
+  //             .from('referrees')
+  //             .select()
+  //             .eq('id', id)
+  //             .single();
+
+  //     currentReferree = Referree.fromJson(res);
+  //     notifyListeners();
+  //   } catch (e) {
+  //     print('Error getting referree: $e');
+  //     currentReferree = null;
+  //   }
+  // }
 }

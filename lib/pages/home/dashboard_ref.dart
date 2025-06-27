@@ -4,7 +4,6 @@ import 'package:stockallref/components/main_button.dart';
 import 'package:stockallref/constants/functions.dart';
 import 'package:stockallref/main.dart';
 import 'package:stockallref/pages/home/home_page.dart';
-import 'package:stockallref/supabase/auth_service.dart';
 import 'package:stockallref/theme/theme.dart';
 
 class DashboardRef extends StatefulWidget {
@@ -19,7 +18,7 @@ class _DashboardRefState extends State<DashboardRef> {
     await returnUserProvider(
       context,
       listen: false,
-    ).getReferreeById(AuthService().currentUser!.id);
+    ).getCurrentReferree();
   }
 
   Future<void> fetchShops() async {

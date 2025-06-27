@@ -5,16 +5,19 @@ class GeneralTextfield extends StatelessWidget {
   final TextEditingController controller;
   final String label;
   final bool? isPhone;
+  final bool? isActive;
   const GeneralTextfield({
     super.key,
     required this.controller,
     required this.label,
     this.isPhone,
+    this.isActive,
   });
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      enabled: isActive ?? true,
       controller: controller,
       textCapitalization: TextCapitalization.words,
       style: TextStyle(fontSize: 15),

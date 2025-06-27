@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:stockallref/components/confimation_dialog.dart';
 import 'package:stockallref/theme/theme.dart';
 
 class BottomNav extends StatelessWidget {
@@ -51,109 +52,11 @@ class BottomNav extends StatelessWidget {
               showDialog(
                 context: context,
                 builder: (context) {
-                  return AlertDialog(
-                    // contentPadding: EdgeInsets.all(0),
-                    shape: BeveledRectangleBorder(
-                      borderRadius: BorderRadius.circular(
-                        5,
-                      ),
-                    ),
-                    title: Text(
-                      style: TextStyle(
-                        fontSize: 16,
-                        color: primary(context),
-                        fontWeight: FontWeight.bold,
-                      ),
-                      'Proceed to Log Out?',
-                    ),
-                    content: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        // SizedBox(height: 10),
-                        Text(
-                          style: TextStyle(
-                            color: Colors.grey,
-                          ),
-                          'You are about to logout, are you sure you want to proceed?',
-                        ),
-                        SizedBox(height: 20),
-                        Row(
-                          spacing: 10,
-                          mainAxisAlignment:
-                              MainAxisAlignment.center,
-                          children: [
-                            Expanded(
-                              child: InkWell(
-                                borderRadius:
-                                    BorderRadius.circular(
-                                      5,
-                                    ),
-                                onTap: () {
-                                  Navigator.of(
-                                    context,
-                                  ).pop();
-                                },
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                    borderRadius:
-                                        BorderRadius.circular(
-                                          5,
-                                        ),
-                                  ),
-                                  padding:
-                                      EdgeInsets.symmetric(
-                                        vertical: 10,
-                                      ),
-                                  child: Center(
-                                    child: Text(
-                                      style: TextStyle(
-                                        fontSize: 12,
-                                        fontWeight:
-                                            FontWeight.bold,
-                                      ),
-                                      'Cancel',
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ),
-                            Expanded(
-                              child: Ink(
-                                decoration: BoxDecoration(
-                                  color: primary(context),
-                                  borderRadius:
-                                      BorderRadius.circular(
-                                        5,
-                                      ),
-                                ),
-                                child: InkWell(
-                                  onTap: logoutAction,
-                                  child: Container(
-                                    padding:
-                                        EdgeInsets.symmetric(
-                                          vertical: 10,
-                                        ),
-                                    child: Center(
-                                      child: Text(
-                                        style: TextStyle(
-                                          fontSize: 12,
-                                          fontWeight:
-                                              FontWeight
-                                                  .bold,
-                                          color:
-                                              Colors.white,
-                                        ),
-                                        'Proceed',
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
+                  return ConfirmationDialog(
+                    title: 'Proceed to Log Out?',
+                    text:
+                        'You are about to logout, are you sure you want to proceed?',
+                    action: logoutAction,
                   );
                 },
               );
