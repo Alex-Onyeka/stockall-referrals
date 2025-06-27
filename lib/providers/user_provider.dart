@@ -6,6 +6,13 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 class UserProvider with ChangeNotifier {
   final supabase = Supabase.instance.client;
 
+  int currentIndex = 0;
+
+  void navigate(int index) {
+    currentIndex = index;
+    notifyListeners();
+  }
+
   List<Referree> _referree = [];
 
   List<Referree> get referree => _referree;

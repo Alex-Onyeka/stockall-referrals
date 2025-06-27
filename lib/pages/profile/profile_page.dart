@@ -18,6 +18,12 @@ class ProfilePage extends StatelessWidget {
         ).currentReferree!;
     return PopScope(
       canPop: false,
+      onPopInvokedWithResult: (didPop, result) {
+        returnUserProvider(
+          context,
+          listen: false,
+        ).navigate(0);
+      },
       child: Scaffold(
         body: Padding(
           padding: const EdgeInsets.symmetric(
@@ -55,7 +61,7 @@ class ProfilePage extends StatelessWidget {
                       ),
                       SizedBox(height: 15),
                       Column(
-                        spacing: 15,
+                        spacing: 10,
                         children: [
                           Text(
                             textAlign: TextAlign.center,
@@ -70,7 +76,7 @@ class ProfilePage extends StatelessWidget {
                             text: user.email,
                           ),
                           Row(
-                            spacing: 20,
+                            spacing: 10,
                             mainAxisAlignment:
                                 MainAxisAlignment.center,
                             children: [
@@ -108,7 +114,7 @@ class ProfilePage extends StatelessWidget {
                             ],
                           ),
                           Row(
-                            spacing: 20,
+                            spacing: 10,
                             mainAxisAlignment:
                                 MainAxisAlignment.center,
                             children: [
@@ -134,7 +140,7 @@ class ProfilePage extends StatelessWidget {
                           Row(
                             mainAxisAlignment:
                                 MainAxisAlignment.center,
-                            spacing: 20,
+                            spacing: 10,
                             children: [
                               Expanded(
                                 child: NewWidget(
@@ -225,7 +231,7 @@ class NewWidget extends StatelessWidget {
                 title,
               ),
               Row(
-                spacing: 10,
+                spacing: 5,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Flexible(

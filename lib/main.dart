@@ -50,6 +50,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: lightMode,
       home: const AuthLanding(),
+      title: 'Stockall Referralls Portal',
     );
   }
 }

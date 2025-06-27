@@ -11,6 +11,12 @@ class ShopsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return PopScope(
       canPop: false,
+      onPopInvokedWithResult: (didPop, result) {
+        returnUserProvider(
+          context,
+          listen: false,
+        ).navigate(0);
+      },
       child: Scaffold(
         body: Padding(
           padding: const EdgeInsets.symmetric(

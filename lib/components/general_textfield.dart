@@ -6,17 +6,20 @@ class GeneralTextfield extends StatelessWidget {
   final String label;
   final bool? isPhone;
   final bool? isActive;
+  final Function(String)? onChanged;
   const GeneralTextfield({
     super.key,
     required this.controller,
     required this.label,
     this.isPhone,
     this.isActive,
+    this.onChanged,
   });
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      onChanged: onChanged,
       enabled: isActive ?? true,
       controller: controller,
       textCapitalization: TextCapitalization.words,

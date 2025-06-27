@@ -36,7 +36,6 @@ class _HomePageState extends State<HomePage> {
     }
   }
 
-  int currentIndex = 0;
   @override
   Widget build(BuildContext context) {
     if (returnUserProvider(context).currentReferree ==
@@ -63,8 +62,19 @@ class _HomePageState extends State<HomePage> {
                 body: Column(
                   children: [
                     TopNavBar(
-                      current: currentIndex,
-                      amount: currentIndex == 1 ? 15 : 15,
+                      current:
+                          returnUserProvider(
+                            context,
+                            listen: true,
+                          ).currentIndex,
+                      amount:
+                          returnUserProvider(
+                                    context,
+                                    listen: true,
+                                  ).currentIndex ==
+                                  1
+                              ? 15
+                              : 15,
                       title:
                           returnUserProvider(
                             context,
@@ -73,9 +83,17 @@ class _HomePageState extends State<HomePage> {
                     Expanded(
                       child: Builder(
                         builder: (context) {
-                          if (currentIndex == 0) {
+                          if (returnUserProvider(
+                                context,
+                                listen: true,
+                              ).currentIndex ==
+                              0) {
                             return Dashboard();
-                          } else if (currentIndex == 1) {
+                          } else if (returnUserProvider(
+                                context,
+                                listen: true,
+                              ).currentIndex ==
+                              1) {
                             return ShopsPage();
                           } else {
                             return Scaffold();
@@ -96,21 +114,28 @@ class _HomePageState extends State<HomePage> {
                           //   Navigator.of(context).pop();
                           // }
                         },
-                        currentIndex: currentIndex,
+                        currentIndex:
+                            returnUserProvider(
+                              context,
+                              listen: true,
+                            ).currentIndex,
                         action: () {
-                          setState(() {
-                            currentIndex = 0;
-                          });
+                          returnUserProvider(
+                            context,
+                            listen: false,
+                          ).navigate(0);
                         },
                         action2: () {
-                          setState(() {
-                            currentIndex = 1;
-                          });
+                          returnUserProvider(
+                            context,
+                            listen: false,
+                          ).navigate(1);
                         },
                         action3: () {
-                          setState(() {
-                            currentIndex = 2;
-                          });
+                          returnUserProvider(
+                            context,
+                            listen: false,
+                          ).navigate(2);
                         },
                       ),
                     ),
@@ -127,14 +152,29 @@ class _HomePageState extends State<HomePage> {
           body: Column(
             children: [
               TopNavBar(
-                current: currentIndex,
-                amount: currentIndex == 1 ? 15 : 15,
+                current:
+                    returnUserProvider(
+                      context,
+                      listen: true,
+                    ).currentIndex,
+                amount:
+                    returnUserProvider(
+                              context,
+                              listen: true,
+                            ).currentIndex ==
+                            1
+                        ? 15
+                        : 15,
                 title:
                     returnUserProvider(
                       context,
                     ).currentReferree!.name,
                 widget:
-                    currentIndex == 1
+                    returnUserProvider(
+                              context,
+                              listen: true,
+                            ).currentIndex ==
+                            1
                         ? PopupMenuButton(
                           offset: Offset(-20, 30),
                           color: Colors.white,
@@ -410,9 +450,17 @@ class _HomePageState extends State<HomePage> {
               Expanded(
                 child: Builder(
                   builder: (context) {
-                    if (currentIndex == 0) {
+                    if (returnUserProvider(
+                          context,
+                          listen: true,
+                        ).currentIndex ==
+                        0) {
                       return Dashboard();
-                    } else if (currentIndex == 1) {
+                    } else if (returnUserProvider(
+                          context,
+                          listen: true,
+                        ).currentIndex ==
+                        1) {
                       return ShopsPage();
                     } else {
                       return ProfilePage();
@@ -429,25 +477,32 @@ class _HomePageState extends State<HomePage> {
                     Navigator.of(context).pop();
                     await AuthService().logOut();
                   },
-                  currentIndex: currentIndex,
+                  currentIndex:
+                      returnUserProvider(
+                        context,
+                        listen: true,
+                      ).currentIndex,
                   action: () {
-                    setState(() {
-                      currentIndex = 0;
-                    });
+                    returnUserProvider(
+                      context,
+                      listen: false,
+                    ).navigate(0);
                     returnShopProvider(
                       context,
                       listen: false,
                     ).filterAction(0);
                   },
                   action2: () {
-                    setState(() {
-                      currentIndex = 1;
-                    });
+                    returnUserProvider(
+                      context,
+                      listen: false,
+                    ).navigate(1);
                   },
                   action3: () {
-                    setState(() {
-                      currentIndex = 2;
-                    });
+                    returnUserProvider(
+                      context,
+                      listen: false,
+                    ).navigate(2);
                     returnShopProvider(
                       context,
                       listen: false,
