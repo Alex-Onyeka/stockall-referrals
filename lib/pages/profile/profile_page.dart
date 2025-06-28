@@ -6,8 +6,29 @@ import 'package:stockallref/main.dart';
 import 'package:stockallref/pages/profile/edit_account.dart';
 import 'package:stockallref/theme/theme.dart';
 
-class ProfilePage extends StatelessWidget {
+class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
+
+  @override
+  State<ProfilePage> createState() => _ProfilePageState();
+}
+
+class _ProfilePageState extends State<ProfilePage> {
+  String formatText(String? text) {
+    if (text != null) {
+      if (text.length > 15) {
+        if (text.split(' ').length > 1) {
+          return '${text.split(' ')[0]} ${text.split(' ')[1][0]}.';
+        } else {
+          return text;
+        }
+      } else {
+        return text;
+      }
+    } else {
+      return 'Not Set';
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -69,7 +90,7 @@ class ProfilePage extends StatelessWidget {
                               fontWeight: FontWeight.bold,
                               fontSize: 16,
                             ),
-                            user.name,
+                            formatText(user.name),
                           ),
                           NewWidget(
                             title: 'Title',
@@ -121,9 +142,9 @@ class ProfilePage extends StatelessWidget {
                               Expanded(
                                 child: NewWidget(
                                   title: 'Bank Name',
-                                  text:
-                                      user.bankName ??
-                                      'Not Set',
+                                  text: formatText(
+                                    user.bankName,
+                                  ),
                                 ),
                               ),
 
@@ -151,9 +172,9 @@ class ProfilePage extends StatelessWidget {
                               Expanded(
                                 child: NewWidget(
                                   title: 'Account Name',
-                                  text:
-                                      user.accountName ??
-                                      'Not Set',
+                                  text: formatText(
+                                    user.accountName,
+                                  ),
                                 ),
                               ),
                             ],

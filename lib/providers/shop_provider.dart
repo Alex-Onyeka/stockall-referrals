@@ -62,6 +62,11 @@ class ShopProvider with ChangeNotifier {
 
   List<Shop> get refShops => _refShops;
 
+  void clearShops() {
+    refShops.clear();
+    notifyListeners();
+  }
+
   Future<void> fetchReferreeShops(String refCode) async {
     final data = await supabase
         .from('shops')

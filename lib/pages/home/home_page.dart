@@ -109,10 +109,6 @@ class _HomePageState extends State<HomePage> {
                         logoutAction: () async {
                           Navigator.of(context).pop();
                           await AuthService().logOut();
-                          // if (context.mounted) {
-
-                          //   Navigator.of(context).pop();
-                          // }
                         },
                         currentIndex:
                             returnUserProvider(

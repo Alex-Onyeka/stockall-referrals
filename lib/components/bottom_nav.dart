@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:stockallref/components/confimation_dialog.dart';
+import 'package:stockallref/main.dart';
 import 'package:stockallref/theme/theme.dart';
 
 class BottomNav extends StatelessWidget {
@@ -56,7 +57,17 @@ class BottomNav extends StatelessWidget {
                     title: 'Proceed to Log Out?',
                     text:
                         'You are about to logout, are you sure you want to proceed?',
-                    action: logoutAction,
+                    action: () {
+                      returnUserProvider(
+                        context,
+                        listen: false,
+                      ).clearCache(context);
+                      returnUserProvider(
+                        context,
+                        listen: false,
+                      ).navigate(0);
+                      logoutAction();
+                    },
                   );
                 },
               );

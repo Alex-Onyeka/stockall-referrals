@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:stockallref/classes/referrees.dart';
+import 'package:stockallref/main.dart';
 import 'package:stockallref/supabase/auth_service.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
@@ -76,6 +77,12 @@ class UserProvider with ChangeNotifier {
       print('Error getting referree: $e');
       currentReferree = null;
     }
+  }
+
+  void clearCache(BuildContext context) {
+    currentReferree = null;
+    returnShopProvider(context, listen: false).clearShops();
+    notifyListeners();
   }
 
   // Future<void> getReferreeById(String id) async {
