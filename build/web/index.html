@@ -1,28 +1,22 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <base href="/">
-
-    <meta charset="UTF-8">
-    <meta content="IE=Edge" http-equiv="X-UA-Compatible">
-    <meta name="description" content="A Referral Portal for Stockall App.">
-
-    <!-- iOS meta tags & icons -->
-    <meta name="mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <meta name="apple-mobile-web-app-title" content="stockallref">
-    <link rel="apple-touch-icon" href="icons/Icon-192.png">
-
-    <!-- Favicon -->
-    <link rel="icon" type="image/png" href="favicon.png">
-
+    <base href="/" />
+    <meta charset="UTF-8" />
+    <meta content="IE=Edge" http-equiv="X-UA-Compatible" />
+    <meta name="description" content="A Referral Portal for Stockall App." />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="apple-mobile-web-app-title" content="stockallref" />
+    <link rel="apple-touch-icon" href="icons/Icon-192.png" />
+    <link rel="icon" type="image/png" href="favicon.png" />
     <title>Stockall Ref</title>
-    <link rel="manifest" href="manifest.json">
+    <link rel="manifest" href="manifest.json" />
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
 
-    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
-
-    <style id="splash-screen-style">
-      html, body {
+    <style>
+      html,
+      body {
         height: 100%;
         margin: 0;
         background-color: #ffffff;
@@ -37,19 +31,30 @@
       }
 
       .spinner {
-        border: 6px solid #080c53;
-        border-top: 6px solid #4e73df;
+        border: 5px solid #080f34;
+        border-top: 5px solid #4e73df;
         border-radius: 50%;
-        width: 50px;
-        height: 50px;
+        width: 30px;
+        height: 30px;
         animation: spin 1s linear infinite;
       }
 
       @keyframes spin {
-        0% { transform: rotate(0deg); }
-        100% { transform: rotate(360deg); }
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
       }
     </style>
+
+    <script>
+      function removeSplashFromWeb() {
+        const splash = document.getElementById("splash-loader");
+        if (splash) splash.remove();
+      }
+    </script>
   </head>
 
   <body>
@@ -58,11 +63,5 @@
     </div>
 
     <script src="flutter_bootstrap.js" async></script>
-    <script>
-      window.addEventListener("load", function () {
-        const splash = document.getElementById("splash-loader");
-        if (splash) splash.remove();
-      });
-    </script>
   </body>
 </html>
