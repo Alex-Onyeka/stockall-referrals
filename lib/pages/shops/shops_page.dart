@@ -72,14 +72,48 @@ class ShopsPage extends StatelessWidget {
                       child: Container(
                         decoration: BoxDecoration(
                           border: Border.all(
-                            color: Colors.amber,
+                            color: Colors.grey.shade300,
                           ),
                         ),
                         child: Center(
                           child: Column(
+                            spacing: 10,
                             mainAxisAlignment:
                                 MainAxisAlignment.center,
-                            children: [Text('Empty List')],
+                            children: [
+                              Container(
+                                padding: EdgeInsets.all(15),
+                                decoration: BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  border: Border.all(
+                                    color:
+                                        Colors
+                                            .grey
+                                            .shade200,
+                                  ),
+                                  color:
+                                      Colors.grey.shade100,
+                                ),
+                                child: Icon(
+                                  color:
+                                      const Color.fromARGB(
+                                        255,
+                                        219,
+                                        139,
+                                        133,
+                                      ),
+                                  Icons.clear,
+                                ),
+                              ),
+                              Text(
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight:
+                                      FontWeight.normal,
+                                ),
+                                'Empty List',
+                              ),
+                            ],
                           ),
                         ),
                       ),

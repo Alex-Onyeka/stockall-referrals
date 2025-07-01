@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:stockallref/main.dart';
 import 'package:stockallref/theme/theme.dart';
 
 class TopNavBar extends StatelessWidget {
@@ -37,35 +38,44 @@ class TopNavBar extends StatelessWidget {
         children: [
           Visibility(
             visible: current != 2,
-            child: Row(
-              spacing: 5,
-              children: [
-                SizedBox(
-                  height: 35,
-                  child: CircleAvatar(
-                    child: Icon(size: 18, Icons.person),
+            child: InkWell(
+              onTap: () {
+                returnUserProvider(context).navigate(2);
+                returnShopProvider(
+                  context,
+                  listen: false,
+                ).filterAction(0);
+              },
+              child: Row(
+                spacing: 5,
+                children: [
+                  SizedBox(
+                    height: 35,
+                    child: CircleAvatar(
+                      child: Icon(size: 18, Icons.person),
+                    ),
                   ),
-                ),
-                Row(
-                  children: [
-                    Text(
-                      style: TextStyle(fontSize: 12),
-                      'Hello, ',
-                    ),
-                    Text(
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        color: primary(context),
+                  Row(
+                    children: [
+                      Text(
+                        style: TextStyle(fontSize: 12),
+                        'Hello, ',
                       ),
-                      title.split(' ').length > 1
-                          ? title
-                              .split(' ')[0]
-                              .toUpperCase()
-                          : title.toUpperCase(),
-                    ),
-                  ],
-                ),
-              ],
+                      Text(
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: primary(context),
+                        ),
+                        title.split(' ').length > 1
+                            ? title
+                                .split(' ')[0]
+                                .toUpperCase()
+                            : title.toUpperCase(),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
             ),
           ),
           widget ?? Container(),

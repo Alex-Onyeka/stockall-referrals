@@ -43,7 +43,7 @@ class _ContainerWidgetState extends State<ContainerWidget> {
               children: [
                 Text(
                   style: TextStyle(
-                    fontSize: widget.isAllTime ? 14 : 12,
+                    fontSize: widget.isAllTime ? 13 : 11,
                     color: Colors.grey.shade600,
                   ),
                   widget.title,
@@ -59,7 +59,7 @@ class _ContainerWidgetState extends State<ContainerWidget> {
                 Text(
                   textAlign: TextAlign.left,
                   style: TextStyle(
-                    fontSize: widget.isAllTime ? 25 : 18,
+                    fontSize: widget.isAllTime ? 20 : 16,
                     fontWeight: FontWeight.bold,
                     color: primary(context),
                   ),
