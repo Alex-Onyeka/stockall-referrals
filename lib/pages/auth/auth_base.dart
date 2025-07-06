@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:stockallref/components/main_button.dart';
-import 'package:stockallref/components/main_button_transparent.dart';
+// import 'package:stockallref/components/main_button.dart';
+// import 'package:stockallref/components/main_button_transparent.dart';
 import 'package:stockallref/constants/images.dart';
-import 'package:stockallref/pages/auth/login.dart';
-import 'package:stockallref/pages/auth/sign_up.dart';
+// import 'package:stockallref/pages/auth/login.dart';
+// import 'package:stockallref/pages/auth/sign_up.dart';
 
 class AuthBase extends StatelessWidget {
   const AuthBase({super.key});
@@ -95,33 +95,33 @@ class AuthBase extends StatelessWidget {
                         ),
                         child: Column(
                           children: [
-                            MainButtonBlue(
-                              action: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) {
-                                      return SignUp();
-                                    },
-                                  ),
-                                );
-                              },
-                              text: 'Create an Account',
-                            ),
+                            // MainButtonBlue(
+                            //   action: () {
+                            //     Navigator.push(
+                            //       context,
+                            //       MaterialPageRoute(
+                            //         builder: (context) {
+                            //           return SignUp();
+                            //         },
+                            //       ),
+                            //     );
+                            //   },
+                            //   text: 'Create an Account',
+                            // ),
                             SizedBox(height: 10),
-                            MainButtonTransparent(
-                              text: 'Login',
-                              action: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) {
-                                      return Login();
-                                    },
-                                  ),
-                                );
-                              },
-                            ),
+                            // MainButtonTransparent(
+                            //   text: 'Login',
+                            //   action: () {
+                            //     Navigator.push(
+                            //       context,
+                            //       MaterialPageRoute(
+                            //         builder: (context) {
+                            //           return Login();
+                            //         },
+                            //       ),
+                            //     );
+                            //   },
+                            // ),
                             SizedBox(height: 50),
                           ],
                         ),
