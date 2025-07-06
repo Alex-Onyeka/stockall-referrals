@@ -61,6 +61,7 @@ class _EditAccountState extends State<EditAccount> {
                   Referree(
                     id: AuthService().currentUser!.id,
                     createdDate: user.createdDate,
+                    password: user.password,
                     name: name.text,
                     email: user.email,
                     phone: phone.text,
