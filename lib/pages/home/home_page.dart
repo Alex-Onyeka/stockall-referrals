@@ -222,10 +222,6 @@ class _HomePageState extends State<HomePage> {
                       context,
                       listen: false,
                     ).navigate(0);
-                    returnShopProvider(
-                      context,
-                      listen: false,
-                    ).filterAction(0);
                   },
                   action2: () {
                     returnUserProvider(
@@ -238,10 +234,6 @@ class _HomePageState extends State<HomePage> {
                       context,
                       listen: false,
                     ).navigate(2);
-                    returnShopProvider(
-                      context,
-                      listen: false,
-                    ).filterAction(0);
                   },
                 ),
               ),

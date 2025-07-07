@@ -4,8 +4,24 @@ import 'package:stockallref/constants/functions.dart';
 import 'package:stockallref/main.dart';
 import 'package:stockallref/theme/theme.dart';
 
-class ShopsPage extends StatelessWidget {
+class ShopsPage extends StatefulWidget {
   const ShopsPage({super.key});
+
+  @override
+  State<ShopsPage> createState() => _ShopsPageState();
+}
+
+class _ShopsPageState extends State<ShopsPage> {
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      returnShopProvider(
+        context,
+        listen: false,
+      ).filterAction(0);
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
