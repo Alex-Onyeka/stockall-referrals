@@ -31,6 +31,7 @@ class _BarcodePageState extends State<BarcodePage> {
           onPressed: () {
             openScanner(context);
           },
+          child: Text('Scan Barcode'),
         ),
       ),
     );

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:stockallref/main.dart';
-import 'package:stockallref/pages/barcode_scanner.dart';
+import 'package:stockallref/pages/barcode_page.dart';
 import 'package:stockallref/pages/home/dashboard_admin.dart';
 import 'package:stockallref/pages/home/dashboard_ref.dart';
 
@@ -17,7 +17,7 @@ class _DashboardState extends State<Dashboard> {
     if (returnUserProvider(
       context,
     ).currentReferree!.isAdmin) {
-      return BarcodeScanner();
+      return BarcodePage();
     } else {
       return DashboardRef();
     }
