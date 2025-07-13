@@ -7,7 +7,7 @@ bool isValidEmail(String email) {
   return emailRegex.hasMatch(email);
 }
 
-double verifiedPayment = 750;
+double verifiedPayment = 1000;
 
 String formatLargeNumber(String numberString) {
   final number = int.tryParse(

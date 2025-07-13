@@ -14,9 +14,9 @@ class UserProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  List<Referree> _referree = [];
+  List<Referree> _referrees = [];
 
-  List<Referree> get referree => _referree;
+  List<Referree> get referrees => _referrees;
 
   /// Create new referree
   Future<void> addReferree(Referree newReferree) async {
@@ -28,14 +28,14 @@ class UserProvider with ChangeNotifier {
             .single();
 
     final added = Referree.fromJson(response);
-    _referree.add(added);
+    _referrees.add(added);
     notifyListeners();
   }
 
   /// Fetch all referree
-  Future<void> fetchReferree() async {
+  Future<void> fetchReferrees() async {
     final data = await supabase.from('referrees').select();
-    _referree =
+    _referrees =
         data
             .map<Referree>(
               (json) => Referree.fromJson(json),
@@ -50,13 +50,13 @@ class UserProvider with ChangeNotifier {
         .from('referrees')
         .update(update.toJson())
         .eq('id', update.id);
-    await fetchReferree();
+    await fetchReferrees();
   }
 
   /// Delete referree
   Future<void> deleteReferree(String id) async {
     await supabase.from('referrees').delete().eq('id', id);
-    _referree.removeWhere((ref) => ref.id == id);
+    _referrees.removeWhere((ref) => ref.id == id);
     notifyListeners();
   }
 
